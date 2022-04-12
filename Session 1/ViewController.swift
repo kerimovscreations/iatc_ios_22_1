@@ -110,7 +110,6 @@ class ViewController: UIViewController {
         print(car.passengerSize)
         print(car.color)
         
-        UIColor.init(red: <#T##CGFloat#>, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
         
         print("Factory method")
         
