@@ -12,7 +12,21 @@
 		65315EE527FC9917000CF129 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65315EE327FC9917000CF129 /* LaunchScreen.storyboard */; };
 		65315EEF27FCA360000CF129 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65315EDC27FC9910000CF129 /* ViewController.swift */; };
 		65AB13162801EBA7007996C4 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB13152801EBA7007996C4 /* MainViewModel.swift */; };
+		65B1E459280B176200931C53 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 65B1E458280B176200931C53 /* SnapKit */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		65B1E45E280B179800931C53 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		65315ED527FC9910000CF129 /* Session 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Session 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65B1E459280B176200931C53 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +55,7 @@
 			children = (
 				65315ED727FC9910000CF129 /* Session 1 */,
 				65315ED627FC9910000CF129 /* Products */,
+				65B1E45A280B179800931C53 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +80,13 @@
 			path = "Session 1";
 			sourceTree = "<group>";
 		};
+		65B1E45A280B179800931C53 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,12 +97,16 @@
 				65315ED127FC9910000CF129 /* Sources */,
 				65315ED227FC9910000CF129 /* Frameworks */,
 				65315ED327FC9910000CF129 /* Resources */,
+				65B1E45E280B179800931C53 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Session 1";
+			packageProductDependencies = (
+				65B1E458280B176200931C53 /* SnapKit */,
+			);
 			productName = "Session 1";
 			productReference = 65315ED527FC9910000CF129 /* Session 1.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +135,9 @@
 				Base,
 			);
 			mainGroup = 65315ECC27FC990F000CF129;
+			packageReferences = (
+				65B1E457280B176200931C53 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 65315ED627FC9910000CF129 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -350,6 +380,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		65B1E457280B176200931C53 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		65B1E458280B176200931C53 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65B1E457280B176200931C53 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 65315ECD27FC990F000CF129 /* Project object */;
 }
