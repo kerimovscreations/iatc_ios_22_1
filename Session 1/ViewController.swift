@@ -14,56 +14,59 @@ class ViewController: UIViewController {
         
     // MARK: - UI Components
     
-    private lazy var scrollView: UIScrollView = {
-        let view = UIScrollView()
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
         
-        view.backgroundColor = .darkGray
+        self.view.addSubview(label)
         
-        return view
+        label.font = UIFont.systemFont(ofSize: 40, weight: .bold)
+        label.textColor = .darkText
+        label.textAlignment = .center
+        
+        label.text = "Let's you in"
+        
+        return label
     }()
     
     private lazy var stackView: UIStackView = {
         let view = UIStackView()
         
-        view.backgroundColor = .lightGray
+        self.view.addSubview(view)
         
         view.axis = .vertical
+
         view.distribution = .equalSpacing
         view.spacing = 16
         
         return view
     }()
     
-    private lazy var textLabel: UILabel = {
+    private lazy var orLabel: UILabel = {
         let label = UILabel()
         
-        label.numberOfLines = 0
+        self.view.addSubview(label)
         
-        label.backgroundColor = .lightGray
-        
-        label.textColor = .black
-        
-        label.font = UIFont.systemFont(ofSize: 24)
-        
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.textColor = .darkText
         label.textAlignment = .center
-                
+        
+        label.text = "or"
+        
         return label
     }()
     
-    private lazy var textLabel2: UILabel = {
-        let label = UILabel()
+    private lazy var loginBtn: UIButton = {
+        let btn = UIButton()
         
-        label.numberOfLines = 0
+        self.view.addSubview(btn)
         
-        label.backgroundColor = .lightGray
+        btn.backgroundColor = .systemGreen
+        btn.layer.cornerRadius = 25
+        btn.setTitle("Sign in with password", for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         
-        label.textColor = .black
-        
-        label.font = UIFont.systemFont(ofSize: 18)
-        
-        label.textAlignment = .left
-                
-        return label
+        return btn
     }()
     
     // MARK: - Parent delegates
@@ -73,57 +76,83 @@ class ViewController: UIViewController {
         
         self.view.backgroundColor = .white
         
-//        self.view.addSubview(self.redView)
-//
-//        self.redView.snp.makeConstraints { make in
-//            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(20)
-//            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).offset(-20)
-//            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(20)
-//            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
-//        }
-//
-//        self.redView.addSubview(self.textLabel)
-//
-//        self.textLabel.snp.makeConstraints { make in
-//            make.bottom.equalTo(self.redView.snp.centerY)
-//            make.right.equalTo(self.redView.snp.centerX).offset(-8)
-//            make.left.equalToSuperview().offset(16)
-//        }
-//
-        let shortText = "Swift Package Manager Swift Package Manager\nSwift Package Manager Swift Package Manager\nSwift Package Manager Swift Package Manager\nSwift Package Manager Swift Package Manager\nSwift Package Manager Swift Package Manager\nSwift Package Manager Swift Package Manager\nSwift Package Manager Swift Package Manager\nSwift Package Manager Swift Package Manager\nSwift Package Manager Swift Package Manager\nSwift Package Manager Swift Package Manager"
-
-        self.textLabel.text = shortText
-//
-//        self.redView.addSubview(self.textLabel2)
-//
-//        self.textLabel2.snp.makeConstraints { make in
-//            make.bottom.equalTo(self.redView.snp.centerY)
-//            make.left.equalTo(self.redView.snp.centerX).offset(8)
-//            make.right.equalToSuperview().offset(-16)
-//        }
-//
-        self.textLabel2.text = "Swift Package Manager Description Description\nSwift Package Manager Description Description\nSwift Package Manager Description Description\nSwift Package Manager Description Description\nSwift Package Manager Description Description\nSwift Package Manager Description Description\nSwift Package Manager Description Description\n"
-        
-        
-        self.view.addSubview(self.scrollView)
-        
-        self.scrollView.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+        self.titleLabel.snp.makeConstraints { make in
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(40)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).offset(-40)
+            make.bottom.equalTo(self.stackView.snp.top).offset(-80)
         }
-        
-        self.scrollView.addSubview(self.stackView)
         
         self.stackView.snp.makeConstraints { make in
-            make.top.equalTo(self.scrollView.contentLayoutGuide.snp.top).offset(16)
-            make.bottom.equalTo(self.scrollView.contentLayoutGuide.snp.bottom).offset(-16)
-            make.left.equalTo(self.scrollView.contentLayoutGuide.snp.left).offset(16)
-            make.centerX.equalTo(self.scrollView.snp.centerX)
+            make.center.equalTo(self.view.center)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(16)
         }
         
-        self.stackView.addArrangedSubview(self.textLabel)
-        self.stackView.addArrangedSubview(self.textLabel2)
+        self.stackView.addArrangedSubview(
+            self.getButton(
+                title: "Continue with Facebook",
+                icon: UIImage(named: "ic_facebook"))
+        )
+        
+        self.stackView.addArrangedSubview(
+            self.getButton(
+                title: "Continue with Google",
+                icon: UIImage(named: "ic_google"))
+        )
+        
+        self.stackView.addArrangedSubview(
+            self.getButton(
+                title: "Continue with Apple",
+                icon: UIImage(named: "ic_apple"))
+        )
+        
+        self.orLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.stackView.snp.bottom).offset(40)
+            make.centerX.equalToSuperview()
+        }
+        
+        self.loginBtn.snp.makeConstraints { make in
+            make.top.equalTo(self.orLabel.snp.bottom).offset(40)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(-16)
+            make.height.equalTo(50)
+        }
+    }
+    
+    // MARK: - Method
+    
+    func getButton(title: String, icon: UIImage?) -> UIView {
+        let view = UIView()
+        
+        view.snp.makeConstraints { make in
+            make.height.equalTo(50)
+        }
+        
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.cornerRadius = 12
+        
+        let label = UILabel()
+        
+        view.addSubview(label)
+        
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        label.textColor = .darkText
+        label.text = title
+        
+        label.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        let image = UIImageView(image: icon)
+        
+        view.addSubview(image)
+        
+        image.snp.makeConstraints { make in
+            make.width.height.equalTo(24)
+            make.right.equalTo(label.snp.left).offset(-12)
+            make.centerY.equalTo(view.snp.centerY)
+        }
+        
+        return view
     }
 }
