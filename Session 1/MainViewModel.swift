@@ -8,9 +8,5 @@
 import Foundation
 
 class MainViewModel {
-    private let carRepo = CarRepository()
     
-    func getCars() -> [Car] {
-        return self.carRepo.getCars()
-    }
 }

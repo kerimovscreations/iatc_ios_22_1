@@ -12,7 +12,6 @@
 		65315EE527FC9917000CF129 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65315EE327FC9917000CF129 /* LaunchScreen.storyboard */; };
 		65315EEF27FCA360000CF129 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65315EDC27FC9910000CF129 /* ViewController.swift */; };
 		65AB13162801EBA7007996C4 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB13152801EBA7007996C4 /* MainViewModel.swift */; };
-		65AB13182801EC14007996C4 /* CarRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB13172801EC14007996C4 /* CarRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +22,6 @@
 		65315EE427FC9917000CF129 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65315EE627FC9917000CF129 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65AB13152801EBA7007996C4 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		65AB13172801EC14007996C4 /* CarRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +60,6 @@
 				65315EE327FC9917000CF129 /* LaunchScreen.storyboard */,
 				65315EE627FC9917000CF129 /* Info.plist */,
 				65AB13152801EBA7007996C4 /* MainViewModel.swift */,
-				65AB13172801EC14007996C4 /* CarRepository.swift */,
 			);
 			path = "Session 1";
 			sourceTree = "<group>";
@@ -137,7 +134,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65AB13182801EC14007996C4 /* CarRepository.swift in Sources */,
 				65315EEF27FCA360000CF129 /* ViewController.swift in Sources */,
 				65315ED927FC9910000CF129 /* AppDelegate.swift in Sources */,
 				65AB13162801EBA7007996C4 /* MainViewModel.swift in Sources */,

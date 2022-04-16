@@ -10,143 +10,221 @@ import UIKit
 class ViewController: UIViewController {
     
     private let vm = MainViewModel()
+        
+    // MARK: - UI Components
     
-    private var mutableStringText = "text1"
+    private lazy var view1: UIView = {
+        let view = UIView()
+        view.backgroundColor = .gray
+        view.layer.cornerRadius = 20
+        
+        view.frame = CGRect.init(x: 50, y: 50, width: 100, height: 100)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(onClick))
+        view.addGestureRecognizer(tapGestureRecognizer)
+        view.isUserInteractionEnabled = true
+        
+        return view
+    }()
+    
+    private lazy var btn1: UIButton = {
+        let btn = UIButton()
+        
+        btn.setTitle("Button is enabled", for: .normal)
+        btn.setTitle("Button is disabled", for: .disabled)
+        
+        btn.setTitleColor(UIColor.systemGreen, for: .normal)
+        btn.setTitleColor(UIColor.gray, for: .disabled)
+        
+        btn.frame = CGRect.init(x: 50, y: 200, width: 150, height: 40)
+        
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        
+        btn.addTarget(self, action: #selector(onBtnClick), for: .touchUpInside)
+        
+        return btn
+    }()
+    
+    private lazy var image1: UIImageView = {
+        let imageView = UIImageView()
+        
+        imageView.image = UIImage.init(named: "bird")
+        imageView.contentMode = .scaleAspectFit
+        
+        imageView.frame = CGRect.init(x: 50, y: 250, width: 100, height: 100)
+        
+        return imageView
+    }()
+    
+    private lazy var slider1: UISlider = {
+        let slider = UISlider()
+        
+        slider.frame = CGRect.init(x: 50, y: 380, width: 300, height: 30)
+        
+        slider.addTarget(self, action: #selector(onSliderChange(_:)), for: .valueChanged)
+        
+        return slider
+    }()
+    
+    private lazy var stackView1: UIStackView = {
+        let view = UIStackView()
+        
+        view.axis = .vertical
+        view.distribution = .fillEqually
+        view.spacing = 16
+        
+        view.frame = CGRect.init(
+            x: 20,
+            y: 40,
+            width: self.view.frame.width - 40,
+            height: 1000)
+        
+        view.backgroundColor = .lightGray
+        
+        return view
+    }()
+    
+    private lazy var viewChild1: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBlue
+        
+        return view
+    }()
+    
+    private lazy var viewChild2: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemRed
+        
+        return view
+    }()
+    
+    private lazy var viewChild3: UIView = {
+        let view = UIView()
+        view.backgroundColor = .yellow
+        
+        return view
+    }()
+    
+    private lazy var viewChild4: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBlue
+
+        return view
+    }()
+    
+    private lazy var viewChild5: UITextField = {
+        let view = UITextField()
+        
+        view.placeholder = "Write here"
+        
+        view.backgroundColor = .white
+        view.font = UIFont.systemFont(ofSize: 32, weight: .regular)
+        view.textColor = .black
+        
+        return view
+    }()
+    
+    private lazy var scrollView1: UIScrollView = {
+        let view = UIScrollView()
+        
+        view.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        
+        view.contentSize = CGSize.init(width: self.view.frame.width, height: self.stackView1.frame.height + 50)
+        
+        return view
+    }()
+    
+    private lazy var scrollView2: UIScrollView = {
+        let view = UIScrollView()
+        
+        view.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 152 + 16)
+        
+        view.contentSize = CGSize.init(width: self.stackView2.frame.width + 20, height: 152 + 16)
+        
+        view.bounces = false
+        view.contentInset = UIEdgeInsets.init(
+            top: 8,
+            left: 10,
+            bottom: 8,
+            right: 10
+        )
+        
+        return view
+    }()
+    
+    private lazy var stackView2: UIStackView = {
+        let view = UIStackView()
+        
+        view.axis = .horizontal
+        view.distribution = .fillEqually
+        view.spacing = 8
+        
+        view.frame = CGRect.init(
+            x: 0,
+            y: 0,
+            width: 800,
+            height: 152)
+        
+        view.backgroundColor = .lightGray
+        
+        return view
+    }()
+    
+    // MARK: - Parent delegates
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("viewDidLoad")
-        
         self.view.backgroundColor = .white
         
-        print("Width: \(self.view.frame.width)")
-        print("Height: \(self.view.frame.height)")
+//        self.view.addSubview(self.view1)
+//        self.view.addSubview(self.btn1)
+//        self.view.addSubview(self.image1)
+//        self.view.addSubview(self.slider1)
         
-        let label = UILabel()
-        label.frame = CGRect.init(x: 100, y: 100, width: 100, height: 30)
-        label.text = "Test1 Test1 Test1 Test1"
-        label.textColor = UIColor.init(red: 0.4, green: 0.1, blue: 0.7, alpha: 1.0)
-        label.backgroundColor = .lightGray
-        self.view.addSubview(label)
+        self.view.addSubview(self.scrollView1)
         
-        self.mutableStringText = self.process()
-        self.mutableStringText = self.processAdd(text: self.mutableStringText)
-        
-        var listIntegers = [1, 2, 3, 4, 5, 6]
-        
-        print(listIntegers)
-        
-        // forEach
-        
-        var sum = 0
-        listIntegers.forEach { number in
-            sum = sum + number
-        }
-        
-        print(sum)
-        
-        // map
-        
-        let listNumbersStruct = listIntegers.map { number in
-            return NumberStruct(displayTitle: "\(number)", value: number)
-        }
-        
-        print(listNumbersStruct)
-        
-        // filter
-        
-        let listNumberOdds = listIntegers.filter { number in
-            return number % 2 == 1
-        }
-        print(listNumberOdds)
-        
-        // reduce
-        
-        let sumReduced = listIntegers.reduce(0) { partialResult, next in
-            partialResult + next
-        }
-        print(sumReduced)
-        
-        // complex
-                
-        let sumReducedCollection = listIntegers.filter { number in
-            number >= 3
-        }.reduce([NumberStruct]()) { partialResult, number in
-            var lastArray = partialResult
-            lastArray.append(NumberStruct(displayTitle: "\(number)", value: number))
-            return lastArray
-        }
-        print(sumReducedCollection)
-        
-        let instance = SingleStruct.shared
-        let sum5 = instance.add(value1: 2, value2: 3)
-        
-        print("Unread message count: \(instance.getUnreadNotification())")
-        
-        instance.addUnreadNotifications(number: 4)
-        
-        print("Unread message count: \(instance.getUnreadNotification())")
-        
-        let childInstance = ViewControllerChild()
-        
-        print("Unread message count: \(childInstance.checkUnreadNotificationSum())")
-        
-        instance.readAll()
-        print("Read all notifications")
-        
-        print("Unread message count: \(instance.getUnreadNotification())")
-        print("Unread message count: \(childInstance.checkUnreadNotificationSum())")
-        
-        print("Builder")
-        
-        let car = Car.Builder()
-            .setColor(.red)
-            .setFuelType(EngineFuel.diesel)
-            .setPassengetSize(5)
-            .build()
-        
-        print(car.fuelType)
-        print(car.passengerSize)
-        print(car.color)
-        
-        
-        print("Factory method")
-        
-        let greenCar = CarFactory.build(fuelType: .diesel, color: .green)
-        
-        let cars = vm.getCars()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        print("viewWillAppear")
-    }
+        self.scrollView1.addSubview(self.stackView1)
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        self.stackView1.addArrangedSubview(self.viewChild1)
+        self.stackView1.addArrangedSubview(self.viewChild2)
+        self.stackView1.addArrangedSubview(self.viewChild3)
+        self.stackView1.addArrangedSubview(self.viewChild4)
+        self.stackView1.addArrangedSubview(self.viewChild5)
         
-        print(#function)
+        self.stackView1.addArrangedSubview(self.scrollView2)
+        self.scrollView2.addSubview(self.stackView2)
+        
+        for _ in 0...8 {
+            let childView = self.getRectangleView(152)
+            self.stackView2.addArrangedSubview(childView)
+        }
     }
     
-    func process() -> String {
-        return "text2"
+    func getRectangleView(_ size: Int) -> UIView {
+        let view = UIView()
+        
+        view.backgroundColor = .systemBlue
+        
+        view.frame = CGRect.init(x: 0, y: 0, width: size, height: size)
+        
+        return view
     }
     
-    func processAdd(text: String) -> String {
-        return text + "1"
-    }
-}
-
-class ViewControllerChild {
+    // MARK: - Click handlers
     
-    func checkUnreadNotificationSum() -> Int {
-        return SingleStruct.shared.getUnreadNotification()
+    @objc func onClick() {
+        print("on clicked")
+        self.btn1.isEnabled.toggle()
     }
-}
-
-struct NumberStruct {
-    let displayTitle: String
-    let value: Int
+    
+    @objc func onBtnClick() {
+        print("on btn clicked")
+    }
+    
+    @objc func onSliderChange(_ slider: UISlider) {
+        print("on slider changed: \(slider.value)")
+        
+        self.view1.backgroundColor = UIColor.init(red: CGFloat(slider.value), green: 0.5, blue: 0.5, alpha: 1.0)
+    }
 }
