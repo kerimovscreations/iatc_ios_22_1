@@ -13,6 +13,8 @@
 		65315EEF27FCA360000CF129 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65315EDC27FC9910000CF129 /* ViewController.swift */; };
 		65AB13162801EBA7007996C4 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB13152801EBA7007996C4 /* MainViewModel.swift */; };
 		65B1E459280B176200931C53 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 65B1E458280B176200931C53 /* SnapKit */; };
+		65E83A44280F0DAE007CB0F0 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E83A43280F0DAE007CB0F0 /* ToolbarView.swift */; };
+		65E83A46280F1252007CB0F0 /* HouseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E83A45280F1252007CB0F0 /* HouseListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +38,8 @@
 		65315EE427FC9917000CF129 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65315EE627FC9917000CF129 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65AB13152801EBA7007996C4 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		65E83A43280F0DAE007CB0F0 /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
+		65E83A45280F1252007CB0F0 /* HouseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,8 @@
 				65315EE327FC9917000CF129 /* LaunchScreen.storyboard */,
 				65315EE627FC9917000CF129 /* Info.plist */,
 				65AB13152801EBA7007996C4 /* MainViewModel.swift */,
+				65E83A43280F0DAE007CB0F0 /* ToolbarView.swift */,
+				65E83A45280F1252007CB0F0 /* HouseListView.swift */,
 			);
 			path = "Session 1";
 			sourceTree = "<group>";
@@ -166,7 +172,9 @@
 			files = (
 				65315EEF27FCA360000CF129 /* ViewController.swift in Sources */,
 				65315ED927FC9910000CF129 /* AppDelegate.swift in Sources */,
+				65E83A44280F0DAE007CB0F0 /* ToolbarView.swift in Sources */,
 				65AB13162801EBA7007996C4 /* MainViewModel.swift in Sources */,
+				65E83A46280F1252007CB0F0 /* HouseListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

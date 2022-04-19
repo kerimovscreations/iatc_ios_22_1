@@ -11,64 +11,45 @@ import SnapKit
 class ViewController: UIViewController {
     
     private let vm = MainViewModel()
+    
         
     // MARK: - UI Components
     
-    
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        
-        self.view.addSubview(label)
-        
-        label.font = UIFont.systemFont(ofSize: 40, weight: .bold)
-        label.textColor = .darkText
-        label.textAlignment = .center
-        
-        label.text = "Let's you in"
-        
-        return label
+    private lazy var toolbarView : ToolbarView = {
+        let view = ToolbarView()
+        self.view.addSubview(view)
+        return view
     }()
     
-    private lazy var stackView: UIStackView = {
-        let view = UIStackView()
-        
+    private lazy var scrollView : UIScrollView = {
+        let view = UIScrollView()
         self.view.addSubview(view)
         
-        view.axis = .vertical
-
-        view.distribution = .equalSpacing
-        view.spacing = 16
+        view.backgroundColor = UIColor.init(white: 0.98, alpha: 1.0)
         
         return view
     }()
     
-    private lazy var orLabel: UILabel = {
-        let label = UILabel()
-        
-        self.view.addSubview(label)
-        
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        label.textColor = .darkText
-        label.textAlignment = .center
-        
-        label.text = "or"
-        
-        return label
+    private lazy var stackView : UIStackView = {
+        let view = UIStackView()
+        self.scrollView.addSubview(view)
+        view.axis = .vertical
+        view.distribution = .equalSpacing
+        view.spacing = 16
+        return view
     }()
     
-    private lazy var loginBtn: UIButton = {
-        let btn = UIButton()
-        
-        self.view.addSubview(btn)
-        
-        btn.backgroundColor = .systemGreen
-        btn.layer.cornerRadius = 25
-        btn.setTitle("Sign in with password", for: .normal)
-        btn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        
-        return btn
-    }()
-    
+    let houses: [House] = [
+        House(title: "house1 house1 house1 house1", price: "100$", description: "description1", rating: 1.9, ratingCount: 15),
+        House(title: "house2", price: "200$", description: "description2", rating: 3.9, ratingCount: 100),
+        House(title: "house3", price: "300$", description: "description3",rating: 5.0, ratingCount: 105),
+        House(title: "house1 house1 house1 house1", price: "100$", description: "description1", rating: 1.9, ratingCount: 15),
+        House(title: "house2", price: "200$", description: "description2", rating: 3.9, ratingCount: 100),
+        House(title: "house3", price: "300$", description: "description3",rating: 5.0, ratingCount: 105),
+        House(title: "house1 house1 house1 house1", price: "100$", description: "description1", rating: 1.9, ratingCount: 15),
+        House(title: "house2", price: "200$", description: "description2", rating: 3.9, ratingCount: 100),
+        House(title: "house3", price: "300$", description: "description3",rating: 5.0, ratingCount: 105)
+    ]
     // MARK: - Parent delegates
 
     override func viewDidLoad() {
@@ -76,83 +57,41 @@ class ViewController: UIViewController {
         
         self.view.backgroundColor = .white
         
-        self.titleLabel.snp.makeConstraints { make in
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(40)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).offset(-40)
-            make.bottom.equalTo(self.stackView.snp.top).offset(-80)
+        toolbarView.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
+            make.height.equalTo(54)
         }
         
-        self.stackView.snp.makeConstraints { make in
-            make.center.equalTo(self.view.center)
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(16)
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(self.toolbarView.snp.bottom)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
         
-        self.stackView.addArrangedSubview(
-            self.getButton(
-                title: "Continue with Facebook",
-                icon: UIImage(named: "ic_facebook"))
-        )
-        
-        self.stackView.addArrangedSubview(
-            self.getButton(
-                title: "Continue with Google",
-                icon: UIImage(named: "ic_google"))
-        )
-        
-        self.stackView.addArrangedSubview(
-            self.getButton(
-                title: "Continue with Apple",
-                icon: UIImage(named: "ic_apple"))
-        )
-        
-        self.orLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.stackView.snp.bottom).offset(40)
-            make.centerX.equalToSuperview()
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(self.scrollView.contentLayoutGuide.snp.top).offset(16)
+            make.left.equalTo(self.scrollView.contentLayoutGuide.snp.left).offset(16)
+            make.centerX.equalTo(self.scrollView.snp.centerX)
+            make.bottom.equalTo(self.scrollView.contentLayoutGuide.snp.bottom).offset(-16)
         }
         
-        self.loginBtn.snp.makeConstraints { make in
-            make.top.equalTo(self.orLabel.snp.bottom).offset(40)
-            make.left.equalToSuperview().offset(16)
-            make.right.equalToSuperview().offset(-16)
-            make.height.equalTo(50)
+        self.houses.forEach { house in
+            let houseView = HouseListView()
+            houseView.setup(house: house)
+            self.stackView.addArrangedSubview(houseView)
         }
     }
     
-    // MARK: - Method
     
-    func getButton(title: String, icon: UIImage?) -> UIView {
-        let view = UIView()
-        
-        view.snp.makeConstraints { make in
-            make.height.equalTo(50)
-        }
-        
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.lightGray.cgColor
-        view.layer.cornerRadius = 12
-        
-        let label = UILabel()
-        
-        view.addSubview(label)
-        
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.textColor = .darkText
-        label.text = title
-        
-        label.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
-        
-        let image = UIImageView(image: icon)
-        
-        view.addSubview(image)
-        
-        image.snp.makeConstraints { make in
-            make.width.height.equalTo(24)
-            make.right.equalTo(label.snp.left).offset(-12)
-            make.centerY.equalTo(view.snp.centerY)
-        }
-        
-        return view
-    }
+}
+
+struct House {
+    let title: String
+    let price: String
+    let description: String
+    let rating: Double
+    let ratingCount: Int
 }
