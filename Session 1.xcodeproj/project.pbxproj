@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D190D032814541400BCB789 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2D190D022814541400BCB789 /* SnapKit */; };
+		2D190D062814605600BCB789 /* Mulish-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D190D052814605600BCB789 /* Mulish-SemiBold.ttf */; };
 		65315ED927FC9910000CF129 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65315ED827FC9910000CF129 /* AppDelegate.swift */; };
 		65315EE227FC9917000CF129 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65315EE127FC9917000CF129 /* Assets.xcassets */; };
 		65315EE527FC9917000CF129 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65315EE327FC9917000CF129 /* LaunchScreen.storyboard */; };
@@ -14,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D190D052814605600BCB789 /* Mulish-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulish-SemiBold.ttf"; sourceTree = "<group>"; };
 		65315ED527FC9910000CF129 /* Session 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Session 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65315ED827FC9910000CF129 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65315EDC27FC9910000CF129 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -27,12 +30,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D190D032814541400BCB789 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D190D042814604500BCB789 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2D190D052814605600BCB789 /* Mulish-SemiBold.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		65315ECC27FC990F000CF129 = {
 			isa = PBXGroup;
 			children = (
@@ -52,6 +64,7 @@
 		65315ED727FC9910000CF129 /* Session 1 */ = {
 			isa = PBXGroup;
 			children = (
+				2D190D042814604500BCB789 /* fonts */,
 				65315ED827FC9910000CF129 /* AppDelegate.swift */,
 				65315EDC27FC9910000CF129 /* ViewController.swift */,
 				65315EE127FC9917000CF129 /* Assets.xcassets */,
@@ -77,6 +90,9 @@
 			dependencies = (
 			);
 			name = "Session 1";
+			packageProductDependencies = (
+				2D190D022814541400BCB789 /* SnapKit */,
+			);
 			productName = "Session 1";
 			productReference = 65315ED527FC9910000CF129 /* Session 1.app */;
 			productType = "com.apple.product-type.application";
@@ -105,6 +121,9 @@
 				Base,
 			);
 			mainGroup = 65315ECC27FC990F000CF129;
+			packageReferences = (
+				2D190D012814541400BCB789 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 65315ED627FC9910000CF129 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -119,6 +138,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D190D062814605600BCB789 /* Mulish-SemiBold.ttf in Resources */,
 				65315EE527FC9917000CF129 /* LaunchScreen.storyboard in Resources */,
 				65315EE227FC9917000CF129 /* Assets.xcassets in Resources */,
 			);
@@ -344,6 +364,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2D190D012814541400BCB789 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2D190D022814541400BCB789 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D190D012814541400BCB789 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 65315ECD27FC990F000CF129 /* Project object */;
 }
