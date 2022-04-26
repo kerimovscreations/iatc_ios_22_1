@@ -8,165 +8,145 @@
 import UIKit
 import SnapKit
 
-struct BasketItem {
-    let product: Product
-}
-
-struct Product {
-    let title: String
-}
-
-struct Category: Hashable {
-    let title: String
-    
-    static func == (lhs: Category, rhs: Category) -> Bool {
-        return lhs.title == rhs.title
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(title)
-    }
-}
-
 class ViewController: UIViewController {
     
     // MARK: - Variables
     
-    private let basketItems: [BasketItem] = [
-        BasketItem(product: Product(title: "Salad")),
-        BasketItem(product: Product(title: "Lenit soup")),
-        BasketItem(product: Product(title: "Basdirma")),
-        BasketItem(product: Product(title: "Salad")),
-        BasketItem(product: Product(title: "Lenit soup")),
-        BasketItem(product: Product(title: "Basdirma")),
-        BasketItem(product: Product(title: "Salad")),
-        BasketItem(product: Product(title: "Lenit soup")),
-        BasketItem(product: Product(title: "Basdirma")),
-        BasketItem(product: Product(title: "Lenit soup")),
-        BasketItem(product: Product(title: "Basdirma")),
-        BasketItem(product: Product(title: "Salad")),
-        BasketItem(product: Product(title: "Lenit soup")),
-        BasketItem(product: Product(title: "Basdirma"))
-    ]
-    
-    private let basketItemsBottom: [BasketItem] = [
-        BasketItem(product: Product(title: "Salad2")),
-        BasketItem(product: Product(title: "Lenit soup2")),
-        BasketItem(product: Product(title: "Basdirma2")),
-        BasketItem(product: Product(title: "Salad2")),
-        BasketItem(product: Product(title: "Lenit soup2")),
-        BasketItem(product: Product(title: "Basdirma2")),
-        BasketItem(product: Product(title: "Salad2")),
-        BasketItem(product: Product(title: "Lenit soup2")),
-        BasketItem(product: Product(title: "Basdirma2")),
-        BasketItem(product: Product(title: "Lenit soup2")),
-        BasketItem(product: Product(title: "Basdirma2")),
-        BasketItem(product: Product(title: "Salad2")),
-    ]
-    
-    private let categories: [Category] = [
-        Category(title: "All dishes"),
-        Category(title: "Soups"),
-        Category(title: "Starters"),
-        Category(title: "Main dishes"),
-        Category(title: "Desserts"),
-        Category(title: "Beverages"),
-    ]
-    
-    private var selectedCategory: Category? = nil {
+    private var selectedDate: Date? = nil {
         didSet {
-            self.updateCategoryView()
+            self.updateDateText()
         }
     }
     
-    private var categoryViews: [CategoryChipView] = []
+    private let datePicker: UIDatePicker = {
+        let picker = UIDatePicker.init()
+        
+        picker.datePickerMode = .dateAndTime
+        picker.preferredDatePickerStyle = .compact
+        
+        picker.addTarget(self, action: #selector(onDateChanged(_:)), for: .valueChanged)
+        
+        return picker
+    }()
+    
+    private let segments = ["Segment 1", "Segment 2", "Segment 3"]
     
     // MARK: - UI Components
     
-    let basketItemCell = "basket_item_cell"
+    private lazy var segmentedControl: UISegmentedControl = {
+        let sgcnt = UISegmentedControl.init(items: self.segments)
+        
+        self.view.addSubview(sgcnt)
+        
+        sgcnt.addTarget(self, action: #selector(onSegmentChanged(_:)), for: .valueChanged)
+        
+        return sgcnt
+    }()
     
-//    private lazy var tableView: UITableView = {
-//        let tableView = UITableView()
+    private lazy var pickDateBtn: UIButton = {
+        let btn = UIButton()
+        
+        self.view.addSubview(btn)
+                
+        btn.setTitle("Select date", for: .normal)
+        btn.setTitleColor(UIColor.blue, for: .normal)
+        
+        btn.addTarget(self, action: #selector(onPickDate), for: .touchUpInside)
+        
+        return btn
+    }()
+    
+    private lazy var selectedDateLabel: UILabel = {
+        let label = UILabel()
+        
+        self.view.addSubview(label)
+        
+        return label
+    }()
+    
+//    private lazy var datePickerInput: UITextField = {
+//        let field = UITextField()
 //
-//        self.view.addSubview(tableView)
+//        self.view.addSubview(field)
 //
-//        tableView.dataSource = self
-//        tableView.delegate = self
+//        field.placeholder = "Date picker input"
 //
-//        tableView.register(BasketItemTableViewCell.self, forCellReuseIdentifier: self.basketItemCell)
-//
-//        tableView.separatorStyle = .none
-//
-//        return tableView
+//        return field
 //    }()
     
-    private lazy var categoryScrollView: UIScrollView = {
+    private lazy var stepperView: UIStepper = {
+        let view = UIStepper()
+        
+        self.view.addSubview(view)
+        
+        view.stepValue = 0.1
+        
+        view.maximumValue = 5.0
+        view.minimumValue = 0.1
+        view.value = 0.1
+        view.isContinuous = true
+        
+        view.addTarget(self, action: #selector(onStepperChanged(_:)), for: .valueChanged)
+        
+        return view
+    }()
+    
+    private lazy var containerScrollView: UIScrollView = {
         let view = UIScrollView()
-        
-        self.view.addSubview(view)
-        
-        return view
-    }()
-    
-    private lazy var categoryStackView: UIStackView = {
-        let view = UIStackView()
-        
-        self.categoryScrollView.addSubview(view)
-        
-        view.axis = .horizontal
-        view.distribution = .equalSpacing
-        view.spacing = 16
-        
-        return view
-    }()
-    
-    private lazy var collectionView: UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
-        
-        flowLayout.scrollDirection = .vertical
-        
-        let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
 
         self.view.addSubview(view)
         
-        view.register(BasketItemCollectionViewCell.self, forCellWithReuseIdentifier: self.basketItemCell)
+        view.isPagingEnabled = true
         
-        view.dataSource = self
         view.delegate = self
+
+        return view
+    }()
+    
+    private lazy var pageControl: UIPageControl = {
+        let view = UIPageControl()
         
-        view.bounces = true
-        view.alwaysBounceVertical = true
+        self.view.addSubview(view)
         
-        view.contentInset.left = 8
-        view.contentInset.right = 8
-        view.contentInset.top = 8
+        view.pageIndicatorTintColor = .lightGray
+        view.currentPageIndicatorTintColor = .systemBlue
+        
+        view.addTarget(self, action: #selector(onPageControlChanged(_:)), for: .valueChanged)
         
         return view
     }()
     
-    private lazy var collectionViewBottom: UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
-        
-        flowLayout.scrollDirection = .vertical
-        
-        let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-
-        self.view.addSubview(view)
-        
-        view.register(BasketItemBottomCollectionViewCell.self, forCellWithReuseIdentifier: self.basketItemCell)
-        
-        view.dataSource = self
-        view.delegate = self
-        
-        view.bounces = true
-        view.alwaysBounceVertical = true
-        
-        view.contentInset.left = 8
-        view.contentInset.right = 8
-        view.contentInset.top = 8
-        
-        return view
-    }()
+//    private lazy var containerView: UIView = {
+//        let view = UIView()
+//
+//        self.view.addSubview(view)
+//
+//        return view
+//    }()
+//
+//    private lazy var segment1View: UIView = {
+//        let view = UIView()
+//
+//        view.backgroundColor = .systemBlue
+//
+//        return view
+//    }()
+//
+//    private lazy var segment2View: UIView = {
+//        let view = UIView()
+//
+//        view.backgroundColor = .systemRed
+//
+//        return view
+//    }()
+//
+//    private lazy var segment3View: UIView = {
+//        let view = UIView()
+//
+//        view.backgroundColor = .systemGray
+//
+//        return view
+//    }()
     
     // MARK: - Parent delegates
 
@@ -175,346 +155,157 @@ class ViewController: UIViewController {
         
         self.view.backgroundColor = .white
         
-//        self.tableView.snp.makeConstraints { make in
+        self.pickDateBtn.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(16)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(16)
+        }
+        
+        self.selectedDateLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.pickDateBtn.snp.bottom).offset(16)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(16)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).offset(-16)
+        }
+        
+//        self.datePickerInput.snp.makeConstraints { make in
+//            make.top.equalTo(self.selectedDateLabel.snp.bottom).offset(16)
+//            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(16)
+//            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).offset(-16)
+//        }
+//
+//        self.datePickerInput.inputView = datePicker
+        
+        self.stepperView.snp.makeConstraints { make in
+            make.top.equalTo(self.selectedDateLabel.snp.bottom).offset(16)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(16)
+        }
+        
+        self.segmentedControl.snp.makeConstraints { make in
+            make.top.equalTo(self.stepperView.snp.bottom).offset(16)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(16)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).offset(-16)
+        }
+        
+        self.containerScrollView.snp.makeConstraints { make in
+            make.top.equalTo(self.segmentedControl.snp.bottom).offset(16)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-36)
+        }
+        
+        self.pageControl.snp.makeConstraints { make in
+            make.top.equalTo(self.containerScrollView.snp.bottom).offset(8)
+            make.centerX.equalTo(self.view.snp.centerX)
+        }
+        
+        
+//        self.containerView.snp.makeConstraints { make in
+//            make.top.equalTo(self.segmentedControl.snp.bottom).offset(16)
 //            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
-//            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
 //            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
 //            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
 //        }
-        
-        self.categoryScrollView.snp.makeConstraints { make in
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
-            make.height.equalTo(56)
-        }
-        
-        self.categoryStackView.snp.makeConstraints { make in
-            make.left.equalTo(self.categoryScrollView.contentLayoutGuide.snp.left).offset(16)
-            make.right.equalTo(self.categoryScrollView.contentLayoutGuide.snp.right).offset(-16)
-            make.top.equalTo(self.categoryScrollView.contentLayoutGuide.snp.top).offset(8)
-            make.bottom.equalTo(self.categoryScrollView.contentLayoutGuide.snp.bottom).offset(-8)
-            make.height.equalTo(40)
-            make.centerY.equalTo(self.categoryScrollView.snp.centerY)
-        }
-                
-        self.collectionView.snp.makeConstraints { make in
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
-            make.top.equalTo(self.categoryScrollView.snp.bottom).offset(16)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
-            make.bottom.equalTo(self.view.snp.centerY)
+    }
+    
+    // MARK: - Functions
+    
+    private func updateDateText() {
+        guard let date = self.selectedDate else {
+            self.selectedDateLabel.text = "Not selected"
+            return
         }
         
-        self.collectionViewBottom.snp.makeConstraints { make in
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
-            make.top.equalTo(self.view.snp.centerY)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        
+        self.selectedDateLabel.text = dateFormatter.string(from: date)
+    }
+    
+    @objc func onPickDate() {
+//        self.selectedDate = Date()
+//        self.showDatePicker()
+        
+        self.pageControl.numberOfPages = self.segments.count
+        self.pageControl.currentPage = 0
+        
+        self.containerScrollView.subviews.forEach { subView in
+            subView.removeFromSuperview()
         }
         
-        for i in self.categories.indices {
-            let category = self.categories[i]
-            let view = CategoryChipView()
-            view.setTitle(category)
-            view.tag = i
+        for i in self.segments.indices {
+            let segmentView = UIView()
             
-            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectCategory(_:)))
-            view.addGestureRecognizer(gestureRecognizer)
+            self.containerScrollView.addSubview(segmentView)
             
-            self.categoryViews.append(view)
+            segmentView.frame = CGRect.init(
+                x: CGFloat(i) * self.containerScrollView.frame.width,
+                y: 0,
+                width: self.containerScrollView.frame.width,
+                height: self.containerScrollView.frame.height
+            )
+                        
+            segmentView.backgroundColor = [.red, .blue, .yellow, .gray, .green][i]
         }
         
-        self.categoryViews.forEach { view in
-            self.categoryStackView.addArrangedSubview(view)
-        }
+        self.containerScrollView.contentSize = CGSize.init(
+            width: CGFloat(self.segments.count) * self.containerScrollView.frame.width,
+            height:  self.containerScrollView.frame.height)
     }
     
-    @objc func selectCategory(_ recognizer: UIGestureRecognizer) {
-        guard let index = recognizer.view?.tag else { return }
-        
-        let category = self.categories[index]
-        if self.selectedCategory == category {
-            
-        } else {
-            self.selectedCategory = category
-        }
+    @objc func onDateChanged(_ sender: UIDatePicker) {
+        self.selectedDate = sender.date
     }
     
-    private func updateCategoryView() {
-        self.categoryViews.forEach { view in
-            view.setSelected(self.selectedCategory == view.categoryItem)
-        }
-    }
-}
-
-extension ViewController:
-    UICollectionViewDataSource,
-    UICollectionViewDelegate,
-    UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == self.collectionView {
-            return self.basketItems.count
-        } else {
-            return self.basketItemsBottom.count
-        }
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == self.collectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.basketItemCell, for: indexPath) as! BasketItemCollectionViewCell
-            
-            let basketItem = self.basketItems[indexPath.row]
-            
-            cell.setTitle(basketItem.product.title)
-            
-            return cell
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.basketItemCell, for: indexPath) as! BasketItemBottomCollectionViewCell
-            
-            let basketItem = self.basketItems[indexPath.row]
-            
-            cell.setTitle(basketItem.product.title)
-            
-            return cell
-        }
+    @objc func onStepperChanged(_ sender: UIStepper) {
+        self.selectedDateLabel.text = String.init(format: "%.1f", sender.value)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == self.collectionView {
-            return CGSize(width: self.view.frame.width - 16, height: 50)
-        } else {
-            return CGSize(width: (self.view.frame.width - 24) / 2, height: 50)
-        }
+    @objc func onPageControlChanged(_ sender: UIPageControl) {
+        self.containerScrollView.setContentOffset(CGPoint.init(x: CGFloat(sender.currentPage) * self.containerScrollView.frame.width, y: 0), animated: true)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
+    @objc func onSegmentChanged(_ sender: UISegmentedControl) {
+        print(sender.selectedSegmentIndex)
+//        switch sender.selectedSegmentIndex {
+//        case 0:
+//            self.fillContainer(with: self.segment1View)
+//        case 1:
+//            self.fillContainer(with: self.segment2View)
+//        case 2:
+//            self.fillContainer(with: self.segment3View)
+//        default:
+//            break
+//        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-}
-
-//extension ViewController: UITableViewDataSource, UITableViewDelegate {
+//    private func fillContainer(with view: UIView) {
+//        self.containerView.subviews.forEach { subView in
+//            subView.removeFromSuperview()
+//        }
 //
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.basketItems.count
-//    }
+//        self.containerView.addSubview(view)
 //
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: basketItemCell) as! BasketItemTableViewCell
-//
-//        let basketItem = self.basketItems[indexPath.row]
-//
-//        cell.setTitle(basketItem.product.title)
-//
-//        return cell
-//    }
-//
-//}
-
-//class BasketItemTableViewCell: UITableViewCell {
-//
-//    // MARK: - UI Components
-//
-//    private lazy var titleLabel: UILabel = {
-//        let label = UILabel()
-//
-//        label.textColor = .darkText
-//        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-//
-//        label.numberOfLines = 0
-//
-//        return label
-//    }()
-//
-//    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-//        super.init(style: style, reuseIdentifier: reuseIdentifier)
-//
-//        setupUI()
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    private func setupUI() {
-//
-//        self.contentView.addSubview(self.titleLabel)
-//
-//        self.titleLabel.snp.makeConstraints { make in
-//            make.top.equalTo(self.contentView.snp.top).offset(12)
-//            make.bottom.equalTo(self.contentView.snp.bottom).offset(-12)
-//            make.left.equalTo(self.contentView.snp.left).offset(16)
-//            make.right.equalTo(self.contentView.snp.right).offset(-16)
+//        view.snp.makeConstraints { make in
+//            make.top.left.right.bottom.equalToSuperview()
 //        }
 //    }
-//
-//    func setTitle(_ title: String) {
-//        self.titleLabel.text = title
-//    }
-//}
-
-class BasketItemCollectionViewCell: UICollectionViewCell {
     
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-
-        label.textColor = .darkText
-        
-        guard let customFont = UIFont(name: "Mulish-SemiBold", size: 24) else {
-            fatalError("""
-                Failed to load the "Mulish-SemiBold" font.
-                Make sure the font file is included in the project and the font name is spelled correctly.
-                """
-            )
-        }
-        label.font = UIFontMetrics.default.scaledFont(for: customFont)
-        label.adjustsFontForContentSizeCategory = true
-
-        label.numberOfLines = 0
-
-        return label
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        self.setupUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupUI() {
-        self.contentView.addSubview(titleLabel)
-        
-        self.titleLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(self.contentView.snp.centerY)
-            make.left.equalTo(self.contentView.snp.left).offset(16)
-            make.right.equalTo(self.contentView.snp.right).offset(-16)
+    private func showDatePicker() {
+        self.view.addSubview(self.datePicker)
+        self.datePicker.snp.makeConstraints { make in
+            make.centerY.equalTo(self.pickDateBtn.snp.centerY)
+            make.left.equalTo(self.pickDateBtn.snp.right).offset(16)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).offset(-16)
         }
     }
     
-    func setTitle(_ title: String) {
-        self.titleLabel.text = title
+    private func hideDatePicker() {
+        self.datePicker.removeFromSuperview()
     }
 }
 
-class BasketItemBottomCollectionViewCell: UICollectionViewCell {
-    
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-
-        label.textColor = .darkText
-        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-
-        label.numberOfLines = 0
-
-        return label
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        self.setupUI()
+extension ViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let index = Int(scrollView.contentOffset.x / scrollView.frame.width)
+        self.pageControl.currentPage = index
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupUI() {
-        self.contentView.addSubview(titleLabel)
-        
-        self.contentView.backgroundColor = .systemBlue
-        
-        self.titleLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(self.contentView.snp.centerY)
-            make.left.equalTo(self.contentView.snp.left).offset(16)
-            make.right.equalTo(self.contentView.snp.right).offset(-16)
-        }
-    }
-    
-    func setTitle(_ title: String) {
-        self.titleLabel.text = title
-    }
-}
-
-class CategoryChipView: UIView {
-    
-    var categoryItem: Category? = nil
-    
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        
-        return label
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        self.setupUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupUI() {
-        self.addSubview(self.titleLabel)
-        
-        self.titleLabel.snp.makeConstraints { make in
-            make.left.equalTo(self.snp.left).offset(8)
-            make.right.equalTo(self.snp.right).offset(-8)
-            make.centerY.equalTo(self.snp.centerY)
-        }
-        
-        self.layer.cornerRadius = 16
-        self.clipsToBounds = true
-        
-        self.setSelected(false)
-    }
-    
-    func setTitle(_ category: Category) {
-        self.categoryItem = category
-        self.titleLabel.text = category.title
-    }
-    
-    func setSelected(_ state: Bool) {
-        if state {
-            self.backgroundColor = hexStringToUIColor(hex: "FFB01D")
-            self.titleLabel.textColor = .white
-        } else {
-            self.backgroundColor = .clear
-            self.titleLabel.textColor = hexStringToUIColor(hex: "FFB01D")
-        }
-        
-    }
-}
-
-func hexStringToUIColor (hex:String) -> UIColor {
-    var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-
-    if (cString.hasPrefix("#")) {
-        cString.remove(at: cString.startIndex)
-    }
-
-    if ((cString.count) != 6) {
-        return UIColor.gray
-    }
-
-    var rgbValue:UInt64 = 0
-    Scanner(string: cString).scanHexInt64(&rgbValue)
-
-    return UIColor(
-        red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-        green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-        blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-        alpha: CGFloat(1.0)
-    )
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2D190D032814541400BCB789 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2D190D022814541400BCB789 /* SnapKit */; };
 		2D190D062814605600BCB789 /* Mulish-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D190D052814605600BCB789 /* Mulish-SemiBold.ttf */; };
+		2DBBEBE4281858E000BCD2A2 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBBEBE3281858E000BCD2A2 /* CollectionViewController.swift */; };
 		65315ED927FC9910000CF129 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65315ED827FC9910000CF129 /* AppDelegate.swift */; };
 		65315EE227FC9917000CF129 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65315EE127FC9917000CF129 /* Assets.xcassets */; };
 		65315EE527FC9917000CF129 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65315EE327FC9917000CF129 /* LaunchScreen.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		2D190D052814605600BCB789 /* Mulish-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulish-SemiBold.ttf"; sourceTree = "<group>"; };
+		2DBBEBE3281858E000BCD2A2 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		65315ED527FC9910000CF129 /* Session 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Session 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65315ED827FC9910000CF129 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65315EDC27FC9910000CF129 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				65315EE127FC9917000CF129 /* Assets.xcassets */,
 				65315EE327FC9917000CF129 /* LaunchScreen.storyboard */,
 				65315EE627FC9917000CF129 /* Info.plist */,
+				2DBBEBE3281858E000BCD2A2 /* CollectionViewController.swift */,
 			);
 			path = "Session 1";
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DBBEBE4281858E000BCD2A2 /* CollectionViewController.swift in Sources */,
 				65315EEF27FCA360000CF129 /* ViewController.swift in Sources */,
 				65315ED927FC9910000CF129 /* AppDelegate.swift in Sources */,
 			);
@@ -300,6 +304,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -329,6 +334,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
