@@ -10,148 +10,141 @@ import SnapKit
 
 class ViewController: UIViewController {
     
-    // MARK: - Variables
-    
-    private lazy var victimView: UIView = {
-        let view = UIView()
-        
-        self.view.addSubview(view)
-        
-        view.backgroundColor = .systemBlue
-        view.layer.cornerRadius = 12
-        view.clipsToBounds = true
-        
-        return view
-    }()
-    
-    private var horizontalTranslation = 0
-    
-    // MARK: - UI Components
-    
-    // MARK: - Parent delegates
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .white
+        let r1 = Rect(color: "red", width: 2, height: 4)
+        //        r1.printDesc()
+        print(r1.width)
+        print(r1.height)
         
-        self.victimView.snp.makeConstraints { make in
-            make.center.equalTo(self.view.snp.center)
-            make.width.equalTo(300)
-            make.height.equalTo(200)
+        (r1 as Shape).printDesc() // successs
+        let sh1: Shape = r1
+        sh1.printDesc()
+        
+        let sh2: Shape = Rect(color: "blue", width: 2, height: 3)
+        
+        if let r2 = sh2 as? Rect {
+            print(r2.width)
+        } else {
+            print("cannot downcast")
         }
         
-        // tap gesture recognizer
+        let shapes: [Shape] = [
+            Rect(color: "yellow", width: 2, height: 3),
+            Circle(color: "green", radius: 7)
+        ]
         
-//        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))
-//        tapRecognizer.numberOfTapsRequired = 2
-//        self.victimView.addGestureRecognizer(tapRecognizer)
+        let characters: [Any] = [
+            Rect(color: "yellow", width: 2, height: 3),
+            Circle(color: "green", radius: 7),
+            3,
+            #selector(printTest)
+        ]
         
-        // pinch gesture recognizer
-        
-//        let pinchRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(onPinch(_:)))
-//        self.victimView.addGestureRecognizer(pinchRecognizer)
-        
-        // rotation gesture recognizer
-        
-//        let rotateRecognizer = UIRotationGestureRecognizer(target: self, action: #selector(onRotate(_:)))
-//        self.victimView.addGestureRecognizer(rotateRecognizer)
-        
-        // swipe gesture recognizer
-        
-//        let swipeLeftRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(onSwipe(_:)))
-//        swipeLeftRecognizer.direction = .left
-//        self.victimView.addGestureRecognizer(swipeLeftRecognizer)
-//
-//        let swipeRightRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(onSwipe(_:)))
-//        swipeRightRecognizer.direction = .right
-//        self.victimView.addGestureRecognizer(swipeRightRecognizer)
-        
-        // pan gesture recognizer
-        
-//        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
-//        self.victimView.addGestureRecognizer(panRecognizer)
-        
-        // edge pan gesture recognizer
-        
-//        let leftEdgePanRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(onEdgePan(_:)))
-//        leftEdgePanRecognizer.edges = .left
-//        self.view.addGestureRecognizer(leftEdgePanRecognizer)
-//
-//        let rightEdgePanRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(onEdgePan(_:)))
-//        rightEdgePanRecognizer.edges = .right
-//        self.view.addGestureRecognizer(rightEdgePanRecognizer)
-        
-        // long press gesture recognizer
-        
-//        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress(_:)))
-//        longPressRecognizer.minimumPressDuration = 2
-//        self.victimView.addGestureRecognizer(longPressRecognizer)
-    }
-    
-    // MARK: - Functions
-    
-    @objc func onTap(_ sender: UITapGestureRecognizer) {
-        if sender.state == .recognized {
-            print("Recognized")
-
-            let transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
-            self.victimView.transform = transform
-        }
-    }
-    
-    @objc func onPinch(_ sender: UIPinchGestureRecognizer) {
-        if sender.state == UIGestureRecognizer.State.changed {
-            let transform = CGAffineTransform.init(scaleX: sender.scale, y: sender.scale)
-            self.victimView.transform = transform
-        }
-    }
-    
-    @objc func onRotate(_ sender: UIRotationGestureRecognizer) {
-        if sender.state == UIGestureRecognizer.State.changed {
-            let transform = CGAffineTransform.init(rotationAngle: sender.rotation)
-            self.victimView.transform = transform
-        }
-    }
-    
-    @objc func onSwipe(_ sender: UISwipeGestureRecognizer) {
-        if sender.direction == .right {
-            self.horizontalTranslation += 10
-            let transform = CGAffineTransform.init(translationX: CGFloat(self.horizontalTranslation), y: 0)
-            self.victimView.transform = transform
-        } else if sender.direction == .left {
-            self.horizontalTranslation -= 10
-            let transform = CGAffineTransform.init(translationX: CGFloat(self.horizontalTranslation), y: 0)
-            self.victimView.transform = transform
-        }
-    }
-    
-    @objc func onPan(_ sender: UIPanGestureRecognizer) {
-        if sender.state == .changed {
-            let translation = sender.translation(in: self.view)
-            let transform = CGAffineTransform.init(translationX: translation.x, y: translation.y)
-            self.victimView.transform = transform
-        }
-    }
-    
-    @objc func onEdgePan(_ sender: UIScreenEdgePanGestureRecognizer) {
-        if sender.state == .recognized {
-            if sender.edges == .left {
-                self.horizontalTranslation += 10
-                let transform = CGAffineTransform.init(translationX: CGFloat(self.horizontalTranslation), y: 0)
-                self.victimView.transform = transform
-            } else if sender.edges == .right {
-                self.horizontalTranslation -= 10
-                let transform = CGAffineTransform.init(translationX: CGFloat(self.horizontalTranslation), y: 0)
-                self.victimView.transform = transform
+        shapes.forEach { shape in
+            if let obj = shape as? Any {
+                print("it is an object \(obj)")
+            } else if let rect = shape as? Rect {
+                print("it is a rect \(rect)")
+            } else if let circle = shape as? Circle {
+                print("it is a circle \(circle)")
+            } else {
+                print("cannot downcast")
             }
         }
-    }
-    
-    @objc func onLongPress(_ sender: UILongPressGestureRecognizer) {
-        if sender.state == .recognized {
-            let transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
-            self.victimView.transform = transform
+        
+        let selection: Selection = .number(0)
+        
+        switch selection {
+        case .textField(let textSelection):
+            print(textSelection.name)
+        case .number(let num):
+            print("number: \(num)")
+        case .datePicker(let date):
+            print(date)
         }
     }
+    
+    @objc func printTest() {
+        
+    }
+}
+
+class Shape {
+    var color: String
+    
+    init(color: String) {
+        self.color = color
+    }
+    
+    required init() {
+        self.color = "not defined"
+    }
+    
+    func printDesc() {
+        print("color: \(color)")
+    }
+}
+
+class Rect: Shape {
+    var width: Int
+    var height: Int
+    
+    init(color: String, width: Int, height: Int) {
+        self.width = width
+        self.height = height
+        
+        super.init()
+        self.color = color
+    }
+    
+    required init() {
+        self.width = 1
+        self.height = 1
+        super.init()
+    }
+    
+    override func printDesc() {
+        print("rect color: \(color)")
+    }
+    
+    func printDesc(prefix: String) {
+        
+    }
+    
+    func printDesc(suffix: String) {
+        
+    }
+}
+
+class Circle: Shape {
+    var radius: Int {
+        get {
+            return 0
+        }
+        set {
+            self.radius = newValue
+        }
+    }
+    
+    init(color: String, radius: Int) {
+//        self.radius = radius
+        super.init(color: color)
+    }
+    
+    required init() {
+//        self.radius = 0
+        super.init()
+        self.radius = 0
+    }
+}
+
+enum Selection {
+    case textField(TextSelection), number(Int), datePicker(Date)
+}
+
+struct TextSelection {
+    let name: String
+    let surname: String
 }
