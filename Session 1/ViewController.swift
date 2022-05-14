@@ -13,138 +13,173 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let r1 = Rect(color: "red", width: 2, height: 4)
-        //        r1.printDesc()
-        print(r1.width)
-        print(r1.height)
+//        let tracker = DiceGameTracker()
+//        let game = SnakesAndLadders()
+//        game.delegate = tracker
+//        game.play()
         
-        (r1 as Shape).printDesc() // successs
-        let sh1: Shape = r1
-        sh1.printDesc()
+        let d4 = Dice(sides: 4, generator: LinearCongruentialGenerator())
+        let d8 = Dice(sides: 8, generator: LinearCongruentialGenerator())
+        let d6 = Dice(sides: 6, generator: LinearCongruentialGenerator())
         
-        let sh2: Shape = Rect(color: "blue", width: 2, height: 3)
+        let dices: [Dice] = [
+            d4,
+            d8,
+            d6
+        ]
+        print(dices.textualDescription)
         
-        if let r2 = sh2 as? Rect {
-            print(r2.width)
-        } else {
-            print("cannot downcast")
+        print(d4 == d6)
+        
+        var dict = Dictionary<Dice, Int>()
+        dict[d4] = 4
+        dict[d4] = 7
+        dict[d6] = 6
+        print(dict)
+        
+        print(d6 > d4)
+        
+        var levels = [SkillLevel.intermediate, SkillLevel.beginner,
+                      SkillLevel.expert(stars: 5), SkillLevel.expert(stars: 3)]
+        for level in levels.sorted() {
+            print(level)
         }
         
-        let shapes: [Shape] = [
-            Rect(color: "yellow", width: 2, height: 3),
-            Circle(color: "green", radius: 7)
-        ]
+        let arr: [Dice] = []
         
-        let characters: [Any] = [
-            Rect(color: "yellow", width: 2, height: 3),
-            Circle(color: "green", radius: 7),
-            3,
-            #selector(printTest)
-        ]
-        
-        shapes.forEach { shape in
-            if let obj = shape as? Any {
-                print("it is an object \(obj)")
-            } else if let rect = shape as? Rect {
-                print("it is a rect \(rect)")
-            } else if let circle = shape as? Circle {
-                print("it is a circle \(circle)")
-            } else {
-                print("cannot downcast")
+        let allPositive = arr.allSatisfy { item in
+            return item.sides > 0
+        }
+    }
+}
+
+protocol TextRepresentable {
+    var textualDescription: String { get }
+}
+
+extension Array: TextRepresentable where Element: TextRepresentable {
+    var textualDescription: String {
+        let itemsAsText = self.map { elementItem in
+            elementItem.textualDescription
+        }
+        return "[" + itemsAsText.joined(separator: ", ") + "]"
+    }
+}
+
+extension Dice: TextRepresentable {
+    var textualDescription: String {
+        return "A \(sides)-sided dice"
+    }
+}
+
+protocol RandomNumberGenerator {
+    func random() -> Double
+}
+
+class LinearCongruentialGenerator: RandomNumberGenerator {
+    var lastRandom = 42.0
+    let m = 139968.0
+    let a = 3877.0
+    let c = 29573.0
+    func random() -> Double {
+        lastRandom = ((lastRandom * a + c)
+            .truncatingRemainder(dividingBy:m))
+        return lastRandom / m
+    }
+}
+
+class Dice {
+    let sides: Int
+    let generator: RandomNumberGenerator
+    init(sides: Int, generator: RandomNumberGenerator) {
+        self.sides = sides
+        self.generator = generator
+    }
+    func roll() -> Int {
+        return Int(generator.random() * Double(sides)) + 1
+    }
+}
+
+extension Dice: Equatable {
+    static func == (lhs: Dice, rhs: Dice) -> Bool {
+        return lhs.sides == rhs.sides
+    }
+}
+
+extension Dice: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(sides)
+    }
+}
+
+extension Dice: Comparable {
+    static func < (lhs: Dice, rhs: Dice) -> Bool {
+        return lhs.sides < rhs.sides
+    }
+}
+
+protocol DiceGame {
+    var dice: Dice { get }
+    func play()
+}
+
+protocol DiceGameDelegate: AnyObject {
+    func gameDidStart(_ game: DiceGame)
+    func game(_ game: DiceGame, didStartNewTurnWithDiceRoll diceRoll: Int)
+    func gameDidEnd(_ game: DiceGame)
+}
+
+class SnakesAndLadders: DiceGame {
+    let finalSquare = 25
+    let dice = Dice(sides: 6, generator: LinearCongruentialGenerator())
+    var square = 0
+    var board: [Int]
+    init() {
+        board = Array(repeating: 0, count: finalSquare + 1)
+        board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
+        board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
+    }
+    weak var delegate: DiceGameDelegate?
+    func play() {
+        square = 0
+        delegate?.gameDidStart(self)
+        gameLoop: while square != finalSquare {
+            let diceRoll = dice.roll()
+            delegate?.game(self, didStartNewTurnWithDiceRoll: diceRoll)
+            switch square + diceRoll {
+            case finalSquare:
+                break gameLoop
+            case let newSquare where newSquare > finalSquare:
+                continue gameLoop
+            default:
+                square += diceRoll
+                square += board[square]
             }
         }
-        
-        let selection: Selection = .number(0)
-        
-        switch selection {
-        case .textField(let textSelection):
-            print(textSelection.name)
-        case .number(let num):
-            print("number: \(num)")
-        case .datePicker(let date):
-            print(date)
+        delegate?.gameDidEnd(self)
+    }
+}
+
+class DiceGameTracker: DiceGameDelegate {
+    var numberOfTurns = 0
+    func gameDidStart(_ game: DiceGame) {
+        numberOfTurns = 0
+        if game is SnakesAndLadders {
+            print("Started a new game of Snakes and Ladders")
         }
+        print("The game is using a \(game.dice.sides)-sided dice")
     }
-    
-    @objc func printTest() {
-        
+    func game(_ game: DiceGame, didStartNewTurnWithDiceRoll diceRoll: Int) {
+        numberOfTurns += 1
+        print("Rolled a \(diceRoll)")
     }
-}
-
-class Shape {
-    var color: String
-    
-    init(color: String) {
-        self.color = color
-    }
-    
-    required init() {
-        self.color = "not defined"
-    }
-    
-    func printDesc() {
-        print("color: \(color)")
+    func gameDidEnd(_ game: DiceGame) {
+        print("The game lasted for \(numberOfTurns) turns")
     }
 }
 
-class Rect: Shape {
-    var width: Int
-    var height: Int
-    
-    init(color: String, width: Int, height: Int) {
-        self.width = width
-        self.height = height
-        
-        super.init()
-        self.color = color
-    }
-    
-    required init() {
-        self.width = 1
-        self.height = 1
-        super.init()
-    }
-    
-    override func printDesc() {
-        print("rect color: \(color)")
-    }
-    
-    func printDesc(prefix: String) {
-        
-    }
-    
-    func printDesc(suffix: String) {
-        
-    }
-}
-
-class Circle: Shape {
-    var radius: Int {
-        get {
-            return 0
-        }
-        set {
-            self.radius = newValue
-        }
-    }
-    
-    init(color: String, radius: Int) {
-//        self.radius = radius
-        super.init(color: color)
-    }
-    
-    required init() {
-//        self.radius = 0
-        super.init()
-        self.radius = 0
-    }
-}
-
-enum Selection {
-    case textField(TextSelection), number(Int), datePicker(Date)
-}
-
-struct TextSelection {
-    let name: String
-    let surname: String
+enum SkillLevel: Comparable {
+    case beginner
+    case intermediate
+    case expert(stars: Int)
 }
