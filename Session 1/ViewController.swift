@@ -7,179 +7,128 @@
 
 import UIKit
 import SnapKit
+import Alamofire
 
 class ViewController: UIViewController {
+    
+    private var accessToken = "token1"
+    private var refreshToken = "11111"
+    
+    lazy var session: Session = {
+        let authAdapter = AuthAdapter.init {
+            return self.accessToken
+        }
+        
+        let authRetrier = AuthRetrier.init {
+            return self.refreshToken
+        } onUpdateAccessToken: { tokenData in
+            self.accessToken = tokenData.accessToken
+            self.refreshToken = tokenData.refreshToken
+        }
+
+        
+        let interceptor = Interceptor(
+            adapters: [authAdapter],
+            retriers: [authRetrier],
+            interceptors: [])
+        
+        let session = Session(interceptor: interceptor)
+        return session
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let tracker = DiceGameTracker()
-//        let game = SnakesAndLadders()
-//        game.delegate = tracker
-//        game.play()
+        view.backgroundColor = .white
         
-        let d4 = Dice(sides: 4, generator: LinearCongruentialGenerator())
-        let d8 = Dice(sides: 8, generator: LinearCongruentialGenerator())
-        let d6 = Dice(sides: 6, generator: LinearCongruentialGenerator())
+        fetchUsers()
+    }
+    
+    func fetchUsers() {
+//        let request = AF.request("http://0.0.0.0:3001/users", headers: ["Authorization": "token1"])
+//
+//        request.responseJSON { data in
+//            print(data)
+//        }
         
-        let dices: [Dice] = [
-            d4,
-            d8,
-            d6
-        ]
-        print(dices.textualDescription)
+        let request = self.session.request("http://0.0.0.0:3001/users")
         
-        print(d4 == d6)
-        
-        var dict = Dictionary<Dice, Int>()
-        dict[d4] = 4
-        dict[d4] = 7
-        dict[d6] = 6
-        print(dict)
-        
-        print(d6 > d4)
-        
-        var levels = [SkillLevel.intermediate, SkillLevel.beginner,
-                      SkillLevel.expert(stars: 5), SkillLevel.expert(stars: 3)]
-        for level in levels.sorted() {
-            print(level)
+        request
+            .validate()
+            .responseJSON { data in
+            print(data)
         }
         
-        let arr: [Dice] = []
+//        request.responseDecodable(of: [User].self) { response in
+//            print(response.value)
+//        }
+    }
+}
+
+class AuthAdapter: Alamofire.RequestAdapter {
+    
+    var getToken: () -> String
+    
+    init(getToken: @escaping () -> String) {
+        self.getToken = getToken
+    }
+
+    func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
+        var urlRequest = urlRequest
         
-        let allPositive = arr.allSatisfy { item in
-            return item.sides > 0
-        }
+        urlRequest.setValue(getToken(), forHTTPHeaderField: "Authorization")
+        
+        completion(.success(urlRequest))
     }
 }
 
-protocol TextRepresentable {
-    var textualDescription: String { get }
-}
-
-extension Array: TextRepresentable where Element: TextRepresentable {
-    var textualDescription: String {
-        let itemsAsText = self.map { elementItem in
-            elementItem.textualDescription
-        }
-        return "[" + itemsAsText.joined(separator: ", ") + "]"
+class AuthRetrier: Alamofire.RequestRetrier {
+    
+    var getRefreshToken: () -> String
+    var onUpdateAccessToken: (AuthToken) -> Void
+    
+    init(getRefreshToken: @escaping () -> String,
+         onUpdateAccessToken: @escaping (AuthToken) -> Void) {
+        self.getRefreshToken = getRefreshToken
+        self.onUpdateAccessToken = onUpdateAccessToken
     }
-}
-
-extension Dice: TextRepresentable {
-    var textualDescription: String {
-        return "A \(sides)-sided dice"
-    }
-}
-
-protocol RandomNumberGenerator {
-    func random() -> Double
-}
-
-class LinearCongruentialGenerator: RandomNumberGenerator {
-    var lastRandom = 42.0
-    let m = 139968.0
-    let a = 3877.0
-    let c = 29573.0
-    func random() -> Double {
-        lastRandom = ((lastRandom * a + c)
-            .truncatingRemainder(dividingBy:m))
-        return lastRandom / m
-    }
-}
-
-class Dice {
-    let sides: Int
-    let generator: RandomNumberGenerator
-    init(sides: Int, generator: RandomNumberGenerator) {
-        self.sides = sides
-        self.generator = generator
-    }
-    func roll() -> Int {
-        return Int(generator.random() * Double(sides)) + 1
-    }
-}
-
-extension Dice: Equatable {
-    static func == (lhs: Dice, rhs: Dice) -> Bool {
-        return lhs.sides == rhs.sides
-    }
-}
-
-extension Dice: Hashable {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(sides)
-    }
-}
-
-extension Dice: Comparable {
-    static func < (lhs: Dice, rhs: Dice) -> Bool {
-        return lhs.sides < rhs.sides
-    }
-}
-
-protocol DiceGame {
-    var dice: Dice { get }
-    func play()
-}
-
-protocol DiceGameDelegate: AnyObject {
-    func gameDidStart(_ game: DiceGame)
-    func game(_ game: DiceGame, didStartNewTurnWithDiceRoll diceRoll: Int)
-    func gameDidEnd(_ game: DiceGame)
-}
-
-class SnakesAndLadders: DiceGame {
-    let finalSquare = 25
-    let dice = Dice(sides: 6, generator: LinearCongruentialGenerator())
-    var square = 0
-    var board: [Int]
-    init() {
-        board = Array(repeating: 0, count: finalSquare + 1)
-        board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
-        board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
-    }
-    weak var delegate: DiceGameDelegate?
-    func play() {
-        square = 0
-        delegate?.gameDidStart(self)
-        gameLoop: while square != finalSquare {
-            let diceRoll = dice.roll()
-            delegate?.game(self, didStartNewTurnWithDiceRoll: diceRoll)
-            switch square + diceRoll {
-            case finalSquare:
-                break gameLoop
-            case let newSquare where newSquare > finalSquare:
-                continue gameLoop
-            default:
-                square += diceRoll
-                square += board[square]
+    
+    func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+        
+        print("error catched")
+        
+        if request.response?.statusCode == 401 {
+            print("cathed 401")
+            
+            let request = AF.request(
+                "http://0.0.0.0:3001/refresh-token",
+                headers: ["Refresh-token": getRefreshToken()])
+            request.responseDecodable(of: AuthToken.self) { response in
+                if let data = response.value {
+                    self.onUpdateAccessToken(data)
+                    completion(.retry)
+                } else {
+                    completion(.doNotRetry)
+                }
             }
+        } else {
+            completion(.doNotRetry)
         }
-        delegate?.gameDidEnd(self)
+    }
+    
+}
+
+struct AuthToken: Decodable {
+    let accessToken: String
+    let refreshToken: String
+    
+    enum CodingKeys: String, CodingKey {
+        case accessToken = "access_token",
+             refreshToken = "refresh_token"
     }
 }
 
-class DiceGameTracker: DiceGameDelegate {
-    var numberOfTurns = 0
-    func gameDidStart(_ game: DiceGame) {
-        numberOfTurns = 0
-        if game is SnakesAndLadders {
-            print("Started a new game of Snakes and Ladders")
-        }
-        print("The game is using a \(game.dice.sides)-sided dice")
-    }
-    func game(_ game: DiceGame, didStartNewTurnWithDiceRoll diceRoll: Int) {
-        numberOfTurns += 1
-        print("Rolled a \(diceRoll)")
-    }
-    func gameDidEnd(_ game: DiceGame) {
-        print("The game lasted for \(numberOfTurns) turns")
-    }
-}
-
-enum SkillLevel: Comparable {
-    case beginner
-    case intermediate
-    case expert(stars: Int)
+struct User: Decodable {
+    let id: String
 }
