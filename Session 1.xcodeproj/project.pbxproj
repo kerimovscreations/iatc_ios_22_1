@@ -15,6 +15,7 @@
 		2D583BAA284FB0AF00D80A66 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2D583BA9284FB0AF00D80A66 /* RxCocoa */; };
 		2D583BAC284FB0AF00D80A66 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 2D583BAB284FB0AF00D80A66 /* RxRelay */; };
 		2D583BAE284FB0AF00D80A66 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2D583BAD284FB0AF00D80A66 /* RxSwift */; };
+		2D81EC4A2858DF4A00732B57 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81EC492858DF4A00732B57 /* ViewController2.swift */; };
 		65315ED927FC9910000CF129 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65315ED827FC9910000CF129 /* AppDelegate.swift */; };
 		65315EE227FC9917000CF129 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65315EE127FC9917000CF129 /* Assets.xcassets */; };
 		65315EE527FC9917000CF129 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65315EE327FC9917000CF129 /* LaunchScreen.storyboard */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		2D190D052814605600BCB789 /* Mulish-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulish-SemiBold.ttf"; sourceTree = "<group>"; };
+		2D81EC492858DF4A00732B57 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 		65315ED527FC9910000CF129 /* Session 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Session 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65315ED827FC9910000CF129 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65315EDC27FC9910000CF129 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				65315EE127FC9917000CF129 /* Assets.xcassets */,
 				65315EE327FC9917000CF129 /* LaunchScreen.storyboard */,
 				65315EE627FC9917000CF129 /* Info.plist */,
+				2D81EC492858DF4A00732B57 /* ViewController2.swift */,
 			);
 			path = "Session 1";
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			files = (
 				65315EEF27FCA360000CF129 /* ViewController.swift in Sources */,
 				65315ED927FC9910000CF129 /* AppDelegate.swift in Sources */,
+				2D81EC4A2858DF4A00732B57 /* ViewController2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
