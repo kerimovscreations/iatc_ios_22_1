@@ -3,8 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>UIAppFonts</key>
-	<string></string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>We need an access to your location coordinates in order to improve recommendation</string>
+	<array>
+		<string>RobotoFlex-VariableFont.ttf</string>
+	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need an access to your location coordinates in order to improve recommendation</string>
 </dict>
 </plist>

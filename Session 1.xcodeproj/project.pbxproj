@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D18A35E285E247B00EA3545 /* PlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D18A35D285E247B00EA3545 /* PlayerControlView.swift */; };
+		2D18A360285E27B800EA3545 /* RobotoFlex-VariableFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D18A35F285E27B800EA3545 /* RobotoFlex-VariableFont.ttf */; };
+		2D18A362285E287C00EA3545 /* FontProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D18A361285E287C00EA3545 /* FontProvider.swift */; };
+		2D18A364285E2F5F00EA3545 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D18A363285E2F5F00EA3545 /* ViewModel.swift */; };
 		2D190D032814541400BCB789 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2D190D022814541400BCB789 /* SnapKit */; };
 		2D190D062814605600BCB789 /* Mulish-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D190D052814605600BCB789 /* Mulish-SemiBold.ttf */; };
 		2D583BA2284BBA9100D80A66 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2D583BA1284BBA9100D80A66 /* Alamofire */; };
@@ -15,7 +19,6 @@
 		2D583BAA284FB0AF00D80A66 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2D583BA9284FB0AF00D80A66 /* RxCocoa */; };
 		2D583BAC284FB0AF00D80A66 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 2D583BAB284FB0AF00D80A66 /* RxRelay */; };
 		2D583BAE284FB0AF00D80A66 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2D583BAD284FB0AF00D80A66 /* RxSwift */; };
-		2D81EC4A2858DF4A00732B57 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D81EC492858DF4A00732B57 /* ViewController2.swift */; };
 		65315ED927FC9910000CF129 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65315ED827FC9910000CF129 /* AppDelegate.swift */; };
 		65315EE227FC9917000CF129 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65315EE127FC9917000CF129 /* Assets.xcassets */; };
 		65315EE527FC9917000CF129 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65315EE327FC9917000CF129 /* LaunchScreen.storyboard */; };
@@ -23,8 +26,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D18A35D285E247B00EA3545 /* PlayerControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlView.swift; sourceTree = "<group>"; };
+		2D18A35F285E27B800EA3545 /* RobotoFlex-VariableFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoFlex-VariableFont.ttf"; sourceTree = "<group>"; };
+		2D18A361285E287C00EA3545 /* FontProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontProvider.swift; sourceTree = "<group>"; };
+		2D18A363285E2F5F00EA3545 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2D190D052814605600BCB789 /* Mulish-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulish-SemiBold.ttf"; sourceTree = "<group>"; };
-		2D81EC492858DF4A00732B57 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 		65315ED527FC9910000CF129 /* Session 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Session 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65315ED827FC9910000CF129 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65315EDC27FC9910000CF129 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +60,7 @@
 		2D190D042814604500BCB789 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				2D18A35F285E27B800EA3545 /* RobotoFlex-VariableFont.ttf */,
 				2D190D052814605600BCB789 /* Mulish-SemiBold.ttf */,
 			);
 			path = fonts;
@@ -84,7 +91,9 @@
 				65315EE127FC9917000CF129 /* Assets.xcassets */,
 				65315EE327FC9917000CF129 /* LaunchScreen.storyboard */,
 				65315EE627FC9917000CF129 /* Info.plist */,
-				2D81EC492858DF4A00732B57 /* ViewController2.swift */,
+				2D18A35D285E247B00EA3545 /* PlayerControlView.swift */,
+				2D18A361285E287C00EA3545 /* FontProvider.swift */,
+				2D18A363285E2F5F00EA3545 /* ViewModel.swift */,
 			);
 			path = "Session 1";
 			sourceTree = "<group>";
@@ -162,6 +171,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D18A360285E27B800EA3545 /* RobotoFlex-VariableFont.ttf in Resources */,
 				2D190D062814605600BCB789 /* Mulish-SemiBold.ttf in Resources */,
 				65315EE527FC9917000CF129 /* LaunchScreen.storyboard in Resources */,
 				65315EE227FC9917000CF129 /* Assets.xcassets in Resources */,
@@ -175,9 +185,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D18A364285E2F5F00EA3545 /* ViewModel.swift in Sources */,
 				65315EEF27FCA360000CF129 /* ViewController.swift in Sources */,
+				2D18A362285E287C00EA3545 /* FontProvider.swift in Sources */,
 				65315ED927FC9910000CF129 /* AppDelegate.swift in Sources */,
-				2D81EC4A2858DF4A00732B57 /* ViewController2.swift in Sources */,
+				2D18A35E285E247B00EA3545 /* PlayerControlView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
