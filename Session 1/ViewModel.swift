@@ -8,174 +8,167 @@
 import Foundation
 import RxSwift
 import RxRelay
+import Alamofire
 
 class ViewModel {
     
-    private let stateIterator: StateIteratorProtocol = StateIterator()
+    private let stateRelay = BehaviorRelay<State?>.init(value: nil)
+    private let effectRelay = PublishRelay<Effect>.init()
     
-    private lazy var stateSubject: BehaviorSubject<TimerState> = {
-        return BehaviorSubject<TimerState>.init(value: self.stateIterator.getCurrent())
-    }()
-    
-    private lazy var remainingTimeRelay: BehaviorRelay<Int> = {
-        return BehaviorRelay<Int>.init(value: self.stateIterator.getCurrent().getTimePeriod() * 60)
-    }()
-    
-    private let timerRunningRelay: BehaviorRelay<TimerRunningState> = BehaviorRelay<TimerRunningState>.init(value: .paused)
-    
-    init() {
-        self.stateIterator.update { state in
-            self.stateSubject.on(.next(state))
-            self.remainingTimeRelay.accept(self.stateIterator.getCurrent().getTimePeriod() * 60
-            )
-        }
+    private lazy var defaultErrorHandler: (Error) -> Void = { err in
+        self.effectRelay.accept(.error(error: err))
     }
     
-    func observeState() -> Observable<TimerState> {
-        return self.stateSubject.asObservable()
-    }
-    
-    func next(pauseTimer: Bool) {
-        if pauseTimer {
-            self.timerPause()
-        }
-        self.stateIterator.next()
-    }
-    
-    func togglePlay() {
-        let isRunning = self.timerRunningRelay.value
-        
-        switch isRunning {
-        case .paused:
-            self.timerStart()
-        case .running:
-            self.timerPause()
-        }
-    }
-    
-    // return remaining seconds
-    func observeTimeRemaining() -> Observable<Int>{
-        return self.remainingTimeRelay.asObservable()
-    }
-    
-    func observeTimerRunning() -> Observable<TimerRunningState> {
-        return self.timerRunningRelay.asObservable()
-    }
-    
-    // MARK: - Timer
-    
-    private func createHeartBeatObservable(interval: Int) -> Observable<Data> {
-        return Observable<Data>.create { observer in
-            let timer = DispatchSource.makeTimerSource(queue: DispatchQueue.global())
-            timer.schedule(deadline: DispatchTime.now(), repeating: .milliseconds(interval))
+    func fetchUserData() {
+        Task(priority: .medium) {
+//            let chicken = Chicken()
+//
+//            print(chicken.food)
+//            print(await chicken.weight)
+//            await chicken.feed()
+//            print(await chicken.weight)
+//            await chicken.fasting()
+//            print(await chicken.weight)
+//            chicken.printFood()
             
-            let cancel = Disposables.create {
-                timer.cancel()
+            let chicken = ChickenClass()
+            
+            print(chicken.food)
+            print(chicken.weight)
+            chicken.feed()
+            print(chicken.weight)
+            chicken.fasting()
+            print(chicken.weight)
+            
+            let task1 = Task(priority: .userInitiated) { () -> [[User]] in
+                
+                async let users: [User] = self.request(url: "http://0.0.0.0:3000/users", method: .get)
+                async let users2: [User] = self.request(url: "http://0.0.0.0:3000/users", method: .get)
+                async let users3: [User] = self.request(url: "http://0.0.0.0:3000/users", method: .get)
+                
+                print("called")
+                
+                return try await [users, users2, users3]
             }
             
-            timer.setEventHandler {
-                if cancel.isDisposed {
+            print("cancelled")
+            task1.cancel()
+            
+            do {
+                print("Is cancelled: \(task1.isCancelled)")
+                print("Task result: \(await task1.result)")
+                
+                let result: [User] = try await task1.value.flatMap { users in
+                    users
+                }
+                self.stateRelay.accept(.show(user: result))
+            } catch {
+                self.effectRelay.accept(.error(error: error))
+            }
+        }
+    }
+    
+    func observeState() -> Observable<State> {
+        return stateRelay
+            .filter({ state in
+                state != nil
+            })
+            .map({ state in
+                state!
+            })
+            .asObservable()
+    }
+    
+    func observeEffect() -> Observable<Effect> {
+        return effectRelay.asObservable()
+    }
+    
+    func request<O>(
+        url: String,
+        method: HTTPMethod
+    ) async throws -> O where O : Decodable {
+        
+        try await withUnsafeThrowingContinuation { continuation in
+            
+            AF.request(url, method: method)
+            .validate()
+            .responseDecodable(of: O.self) { response in
+                if let err = response.error {
+                    continuation.resume(with: .failure(err))
                     return
                 }
-                observer.on(.next(Data()))
-            }
-            
-            timer.resume()
-            
-            return cancel
-        }
-    }
-    
-    private var timerSubscription: Disposable? = nil
-    
-    private func timerStart() {
-        self.timerSubscription?.dispose()
-        
-        self.timerRunningRelay.accept(.running)
-        
-        let heartBeatObservable = self.createHeartBeatObservable(interval: 100)
-        
-        self.timerSubscription = heartBeatObservable.subscribe { _ in
-            let remaining = self.remainingTimeRelay.value - 1
-            
-            if remaining >= 0 {
-                self.remainingTimeRelay.accept(remaining)
-            } else {
-                self.next(pauseTimer: false)
+                
+                guard let data = response.value else {
+                    continuation.resume(with: .failure(DataError(message: "ParsingError")))
+                    return
+                }
+                
+                continuation.resume(with: .success(data))
             }
         }
     }
     
-    private func timerPause() {
-        self.timerSubscription?.dispose()
-        self.timerRunningRelay.accept(.paused)
+}
+
+struct DataError: Error {
+    let message: String
+}
+
+enum State {
+    case show(user: [User])
+}
+
+enum Effect {
+    case error(error: Error)
+}
+
+struct User: Decodable, Sendable {
+    let name: String
+}
+
+class Location: @unchecked Sendable {
+    let lat: Double = 0.0
+    let long: Double = 0.0
+}
+
+class CustomLocation: Location {
+    let name: String = ""
+}
+
+actor Chicken {
+    let food = "worm"
+    var weight: Double = 0.0
+    
+    func feed() {
+        weight += 1.0
+    }
+    
+    func fasting() {
+        weight -= 1.0
+    }
+    
+    nonisolated func printFood() {
+        print("Eating only \(food)")
     }
 }
 
-enum TimerState {
-    case focus, short_break, long_break
+final class ChickenClass {
+    let food = "wheat"
+    var weight: Double = 0.0
     
-    // in minutes
-    func getTimePeriod() -> Int {
-        switch self {
-        case .focus:
-            return 5
-        case .short_break:
-            return 1
-        case .long_break:
-            return 3
-        }
-    }
-}
-
-enum TimerRunningState {
-    case paused, running
-}
-
-protocol StateIteratorProtocol {
-    func getCurrent() -> TimerState
-    func next()
-    func update(on: @escaping (TimerState) -> Void)
-}
-
-class StateIterator: StateIteratorProtocol {
+    let queue = DispatchQueue(label: "chicken.eat.queue", attributes: .concurrent)
     
-    private var breakCounter = 0
-    
-    private var currentState: TimerState = .focus {
-        didSet {
-            self.onUpdate(currentState)
-        }
-    }
-    
-    private var onUpdate: (TimerState) -> Void = { _ in }
-    
-    func getCurrent() -> TimerState {
-        return self.currentState
-    }
-    
-    // [focus short_br focus short_br focus long_br]
-    func next() {
-        switch self.currentState {
-        case .focus:
-            switch breakCounter % 3 {
-            case 0, 1:
-                self.currentState = .short_break
-                self.breakCounter += 1
-            case 2:
-                self.currentState = .long_break
-                self.breakCounter += 1
-            default:
-                break
-            }
-        case .short_break:
-            self.currentState = .focus
-        case .long_break:
-            self.currentState = .focus
+    func feed() {
+        // blocks reads while writing
+        queue.sync(flags: .barrier) {
+            weight += 1.0
         }
     }
     
-    func update(on: @escaping (TimerState) -> Void) {
-        self.onUpdate = on
+    func fasting() {
+        // blocks reads while writing
+        queue.sync(flags: .barrier) {
+            weight -= 1.0
+        }
     }
 }

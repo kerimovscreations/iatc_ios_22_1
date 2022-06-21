@@ -13,52 +13,24 @@ class ViewController: UIViewController {
     
     // MARK: - UI Components
     
-    private lazy var chipIcon: UIImageView = {
-        let icon = UIImageView.init(image: UIImage.init(named: "ic_chip_focus"))
-        
-        self.view.addSubview(icon)
-        
-        icon.contentMode = .scaleAspectFill
-        
-        return icon
-    }()
-    
-    private lazy var playerControl: PlayerControlView = {
-        let view = PlayerControlView()
-        
-        self.view.addSubview(view)
-        
-        return view
-    }()
-    
-    private lazy var timerWrapperView: UIView = {
-        let view = UIView()
-        
-        self.view.addSubview(view)
-        
-        view.clipsToBounds = true
-        
-        return view
-    }()
-    
-    private lazy var timerText: UILabel = {
+    private lazy var label: UILabel = {
         let label = UILabel()
         
-        self.timerWrapperView.addSubview(label)
-        
+        self.view.addSubview(label)
+        label.textColor = .black
+        label.font = .systemFont(ofSize: 36)
         label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
         
         return label
     }()
     
     // MARK: - Variables
     
-    private let fontProvider = FontProvider()
-    
     private let vm = ViewModel()
     
     private var compositeDisposable = CompositeDisposable()
+    
+    private let disposeBag = DisposeBag()
     
     // MARK: - Parent delegates
     
@@ -67,103 +39,52 @@ class ViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        self.setupUI()
-        
-        self.playerControl.delegate = self
-    }
-    
-    private func setupUI() {
-        self.chipIcon.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(48)
-            make.height.equalTo(48)
+        self.label.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(50)
+            make.right.equalToSuperview().offset(-20)
         }
         
-        self.playerControl.snp.makeConstraints { make in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-48)
-            make.centerX.equalToSuperview()
-        }
-        
-        self.timerWrapperView.snp.makeConstraints { make in
-            make.top.equalTo(self.chipIcon.snp.bottom).offset(32)
-            make.bottom.equalTo(self.playerControl.snp.top).offset(-32)
-            make.centerX.equalToSuperview()
-        }
-        
-        self.timerText.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(24)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-        }
-    }
-    
-    private func setState(_ state: TimerState) {
-        switch state {
-        case .focus:
-            self.chipIcon.image = UIImage.init(named: "ic_chip_focus")
-        case .short_break:
-            self.chipIcon.image = UIImage.init(named: "ic_chip_short_break")
-        case .long_break:
-            self.chipIcon.image = UIImage.init(named: "ic_chip_long_break")
-        }
-    }
-    
-    private func setRemainingTime(_ time: Int) {
-        let minutes: Int = time / 60
-        let seconds: Int = time % 60
-        
-        let timerContent = String.init(format: "%02d\n%02d", minutes, seconds)
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 0.83
-        
-        self.timerText.textAlignment = .center
-        self.timerText.attributedText = NSMutableAttributedString(
-            string: timerContent, attributes: [
-                NSAttributedString.Key.paragraphStyle: paragraphStyle,
-                NSAttributedString.Key.font: fontProvider.getFont(type: .timer_pause),
-                NSAttributedString.Key.foregroundColor: UIColor.black
-            ])
-    }
-    
-    private func setRunningState(_ state: TimerRunningState) {
-        self.playerControl.setup(runningState: state)
+        self.vm.fetchUserData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.compositeDisposable = CompositeDisposable()
+        self.compositeDisposable.disposed(by: self.disposeBag)
         
-        let stateSubscription = self.vm.observeState()
+        let subscription = self.vm.observeState()
             .observe(on: MainScheduler.instance)
             .subscribe { received in
-            guard let state = received.element else { return }
+            guard let data = received.element else { return }
             
-            self.setState(state)
+            switch data {
+            case .show(let users):
+                self.label.text = users.map({ user in
+                    user.name
+                }).joined(separator: ", ")
+            }
         }
         
-        let _ = self.compositeDisposable.insert(stateSubscription)
+        self.add(subscription: subscription)
         
-        let timerSubscription = self.vm.observeTimeRemaining()
+        let effectSubscription = self.vm.observeEffect()
             .observe(on: MainScheduler.instance)
             .subscribe { received in
-                guard let time = received.element else { return }
+                guard let effect = received.element else { return }
                 
-                self.setRemainingTime(time)
+                print(effect)
+                
+                switch effect {
+                case .error(let err):
+                    let alert = UIAlertController(title: "Error", message: "Unexpected error occurred: \(err.localizedDescription)", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Close", style: .cancel))
+                    self.present(alert, animated: true)
+                }
             }
         
-        let _ = self.compositeDisposable.insert(timerSubscription)
-        
-        let timerRunningSubscription = self.vm.observeTimerRunning()
-            .observe(on: MainScheduler.instance)
-            .subscribe { received in
-            guard let state = received.element else { return }
-            
-            self.setRunningState(state)
-        }
-        
-        let _ = self.compositeDisposable.insert(timerRunningSubscription)
+        self.add(subscription: effectSubscription)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -171,20 +92,8 @@ class ViewController: UIViewController {
         
         self.compositeDisposable.dispose()
     }
-}
-
-// MARK: - Player control delegate
-
-extension ViewController: PlayerControlDelegate {
-    func onMore() {
-        // break
-    }
     
-    func onPlay() {
-        self.vm.togglePlay()
-    }
-    
-    func onNext() {
-        self.vm.next(pauseTimer: true)
+    private func add(subscription: Disposable) {
+        let _ = self.compositeDisposable.insert(subscription)
     }
 }

@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D18A35E285E247B00EA3545 /* PlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D18A35D285E247B00EA3545 /* PlayerControlView.swift */; };
 		2D18A360285E27B800EA3545 /* RobotoFlex-VariableFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D18A35F285E27B800EA3545 /* RobotoFlex-VariableFont.ttf */; };
-		2D18A362285E287C00EA3545 /* FontProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D18A361285E287C00EA3545 /* FontProvider.swift */; };
 		2D18A364285E2F5F00EA3545 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D18A363285E2F5F00EA3545 /* ViewModel.swift */; };
 		2D190D032814541400BCB789 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2D190D022814541400BCB789 /* SnapKit */; };
 		2D190D062814605600BCB789 /* Mulish-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D190D052814605600BCB789 /* Mulish-SemiBold.ttf */; };
@@ -26,9 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2D18A35D285E247B00EA3545 /* PlayerControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlView.swift; sourceTree = "<group>"; };
 		2D18A35F285E27B800EA3545 /* RobotoFlex-VariableFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoFlex-VariableFont.ttf"; sourceTree = "<group>"; };
-		2D18A361285E287C00EA3545 /* FontProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontProvider.swift; sourceTree = "<group>"; };
 		2D18A363285E2F5F00EA3545 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2D190D052814605600BCB789 /* Mulish-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulish-SemiBold.ttf"; sourceTree = "<group>"; };
 		65315ED527FC9910000CF129 /* Session 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Session 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,8 +87,6 @@
 				65315EE127FC9917000CF129 /* Assets.xcassets */,
 				65315EE327FC9917000CF129 /* LaunchScreen.storyboard */,
 				65315EE627FC9917000CF129 /* Info.plist */,
-				2D18A35D285E247B00EA3545 /* PlayerControlView.swift */,
-				2D18A361285E287C00EA3545 /* FontProvider.swift */,
 				2D18A363285E2F5F00EA3545 /* ViewModel.swift */,
 			);
 			path = "Session 1";
@@ -187,9 +181,7 @@
 			files = (
 				2D18A364285E2F5F00EA3545 /* ViewModel.swift in Sources */,
 				65315EEF27FCA360000CF129 /* ViewController.swift in Sources */,
-				2D18A362285E287C00EA3545 /* FontProvider.swift in Sources */,
 				65315ED927FC9910000CF129 /* AppDelegate.swift in Sources */,
-				2D18A35E285E247B00EA3545 /* PlayerControlView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
