@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D137D5728675C2000E07880 /* TaskRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D137D5628675C2000E07880 /* TaskRepo.swift */; };
+		2D137D5928675DCF00E07880 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D137D5828675DCF00E07880 /* TaskModel.swift */; };
+		2D137D5C2867600E00E07880 /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D137D5A2867600D00E07880 /* Models.xcdatamodeld */; };
+		2D137D5E286761EC00E07880 /* UserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D137D5D286761EC00E07880 /* UserRepo.swift */; };
+		2D137D742867748F00E07880 /* ColorAttributeTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D137D732867748F00E07880 /* ColorAttributeTransformer.swift */; };
+		2D137D812867770200E07880 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D137D7D2867770200E07880 /* User+CoreDataClass.swift */; };
+		2D137D822867770200E07880 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D137D7E2867770200E07880 /* User+CoreDataProperties.swift */; };
+		2D137D832867770200E07880 /* Car+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D137D7F2867770200E07880 /* Car+CoreDataClass.swift */; };
+		2D137D842867770200E07880 /* Car+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D137D802867770200E07880 /* Car+CoreDataProperties.swift */; };
 		2D18A360285E27B800EA3545 /* RobotoFlex-VariableFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D18A35F285E27B800EA3545 /* RobotoFlex-VariableFont.ttf */; };
 		2D18A364285E2F5F00EA3545 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D18A363285E2F5F00EA3545 /* ViewModel.swift */; };
 		2D190D032814541400BCB789 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2D190D022814541400BCB789 /* SnapKit */; };
@@ -24,6 +33,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D137D5628675C2000E07880 /* TaskRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepo.swift; sourceTree = "<group>"; };
+		2D137D5828675DCF00E07880 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		2D137D5B2867600E00E07880 /* Models.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Models.xcdatamodel; sourceTree = "<group>"; };
+		2D137D5D286761EC00E07880 /* UserRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepo.swift; sourceTree = "<group>"; };
+		2D137D732867748F00E07880 /* ColorAttributeTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorAttributeTransformer.swift; sourceTree = "<group>"; };
+		2D137D7D2867770200E07880 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2D137D7E2867770200E07880 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D137D7F2867770200E07880 /* Car+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Car+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2D137D802867770200E07880 /* Car+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Car+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2D18A35F285E27B800EA3545 /* RobotoFlex-VariableFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoFlex-VariableFont.ttf"; sourceTree = "<group>"; };
 		2D18A363285E2F5F00EA3545 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2D190D052814605600BCB789 /* Mulish-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulish-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -81,6 +99,10 @@
 		65315ED727FC9910000CF129 /* Session 1 */ = {
 			isa = PBXGroup;
 			children = (
+				2D137D7D2867770200E07880 /* User+CoreDataClass.swift */,
+				2D137D7E2867770200E07880 /* User+CoreDataProperties.swift */,
+				2D137D7F2867770200E07880 /* Car+CoreDataClass.swift */,
+				2D137D802867770200E07880 /* Car+CoreDataProperties.swift */,
 				2D190D042814604500BCB789 /* fonts */,
 				65315ED827FC9910000CF129 /* AppDelegate.swift */,
 				65315EDC27FC9910000CF129 /* ViewController.swift */,
@@ -88,6 +110,11 @@
 				65315EE327FC9917000CF129 /* LaunchScreen.storyboard */,
 				65315EE627FC9917000CF129 /* Info.plist */,
 				2D18A363285E2F5F00EA3545 /* ViewModel.swift */,
+				2D137D5628675C2000E07880 /* TaskRepo.swift */,
+				2D137D5828675DCF00E07880 /* TaskModel.swift */,
+				2D137D5A2867600D00E07880 /* Models.xcdatamodeld */,
+				2D137D5D286761EC00E07880 /* UserRepo.swift */,
+				2D137D732867748F00E07880 /* ColorAttributeTransformer.swift */,
 			);
 			path = "Session 1";
 			sourceTree = "<group>";
@@ -181,6 +208,15 @@
 			files = (
 				2D18A364285E2F5F00EA3545 /* ViewModel.swift in Sources */,
 				65315EEF27FCA360000CF129 /* ViewController.swift in Sources */,
+				2D137D5928675DCF00E07880 /* TaskModel.swift in Sources */,
+				2D137D5C2867600E00E07880 /* Models.xcdatamodeld in Sources */,
+				2D137D842867770200E07880 /* Car+CoreDataProperties.swift in Sources */,
+				2D137D742867748F00E07880 /* ColorAttributeTransformer.swift in Sources */,
+				2D137D812867770200E07880 /* User+CoreDataClass.swift in Sources */,
+				2D137D832867770200E07880 /* Car+CoreDataClass.swift in Sources */,
+				2D137D5E286761EC00E07880 /* UserRepo.swift in Sources */,
+				2D137D5728675C2000E07880 /* TaskRepo.swift in Sources */,
+				2D137D822867770200E07880 /* User+CoreDataProperties.swift in Sources */,
 				65315ED927FC9910000CF129 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,6 +504,19 @@
 			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		2D137D5A2867600D00E07880 /* Models.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2D137D5B2867600E00E07880 /* Models.xcdatamodel */,
+			);
+			currentVersion = 2D137D5B2867600E00E07880 /* Models.xcdatamodel */;
+			path = Models.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 65315ECD27FC990F000CF129 /* Project object */;
 }

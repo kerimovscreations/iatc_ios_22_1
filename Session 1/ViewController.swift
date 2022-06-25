@@ -7,30 +7,16 @@
 
 import UIKit
 import SnapKit
-import RxSwift
 
 class ViewController: UIViewController {
     
     // MARK: - UI Components
     
-    private lazy var label: UILabel = {
-        let label = UILabel()
-        
-        self.view.addSubview(label)
-        label.textColor = .black
-        label.font = .systemFont(ofSize: 36)
-        label.numberOfLines = 0
-        
-        return label
-    }()
     
     // MARK: - Variables
     
     private let vm = ViewModel()
     
-    private var compositeDisposable = CompositeDisposable()
-    
-    private let disposeBag = DisposeBag()
     
     // MARK: - Parent delegates
     
@@ -38,62 +24,67 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+
+//        self.vm.setTask(title: "Wash teeth 3") // id = 1
+//        self.vm.setTask(title: "Clean room 2") // id = 2
+//        self.vm.setTask(title: "Have a breakfast") // = 3
         
-        self.label.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
-            make.top.equalToSuperview().offset(50)
-            make.right.equalToSuperview().offset(-20)
-        }
+//        if let task2 = self.vm.getTask(by: 2) {
+//            print("My task 2: \(task2)")
+//        }
         
-        self.vm.fetchUserData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+//        if let taskModel3 = self.vm.getTaskModel(by: 3) {
+//            print("My task 3: \(taskModel3.title)")
+//        }
         
-        self.compositeDisposable = CompositeDisposable()
-        self.compositeDisposable.disposed(by: self.disposeBag)
+//        self.vm.saveUser(name: "Bob Doe", email: "bob@company.com")
+//
+//        if let name = self.vm.getFirstUserName() {
+//            print("First user name: \(name)")
+//        }
+//
+//        if let name = self.vm.getLastUserName() {
+//            print("Last user name: \(name)")
+//        }
         
-        let subscription = self.vm.observeState()
-            .observe(on: MainScheduler.instance)
-            .subscribe { received in
-            guard let data = received.element else { return }
-            
-            switch data {
-            case .show(let users):
-                self.label.text = users.map({ user in
-                    user.name
-                }).joined(separator: ", ")
-            }
-        }
+//        self.vm.saveUserWithCars(
+//            name: "Rich5 member",
+//            email: "rich5@company.com",
+//            carModels: [
+//                (model: "Mercedes", color: UIColor.black),
+//                (model: "Volvo", color: UIColor.blue)
+//            ]
+//        )
         
-        self.add(subscription: subscription)
+//        if let richUser = self.vm.getUserWithCars(email: "rich5@company.com") {
+////            print(richUser)
+//            print("user name: \(richUser.fullName ?? "NA"),\nemail: \(richUser.email ?? "NA"),\nid: \(richUser.id?.uuidString ?? "NA")")
+//
+////            richUser.cars?.enumerated().forEach({ body in
+////                body.element
+////            })
+//
+//            richUser.cars?.enumerated().forEach({ iterator in
+//                if let car = iterator.element as? Car {
+//                    print("rich user car model: \(car.model ?? "NA")\ncolor: \(car.color.hashValue)")
+//                }
+//            })
+//
+////            if let cars = richUser.cars?.enumerated() as? NSOrderedSet<Car> {
+////                cars.forEach({ car in
+////                    print("rich user car model: \(car.model ?? "NA")")
+////                })
+////            }
+//        }
         
-        let effectSubscription = self.vm.observeEffect()
-            .observe(on: MainScheduler.instance)
-            .subscribe { received in
-                guard let effect = received.element else { return }
-                
-                print(effect)
-                
-                switch effect {
-                case .error(let err):
-                    let alert = UIAlertController(title: "Error", message: "Unexpected error occurred: \(err.localizedDescription)", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Close", style: .cancel))
-                    self.present(alert, animated: true)
-                }
-            }
-        
-        self.add(subscription: effectSubscription)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.compositeDisposable.dispose()
-    }
-    
-    private func add(subscription: Disposable) {
-        let _ = self.compositeDisposable.insert(subscription)
+        self.vm.saveUserWithCars(
+            name: "Rich6 member",
+            email: "rich6@company.com",
+            age: 200,
+            carModels: [
+                (model: "Mercedes", color: UIColor.black),
+                (model: "Volvo", color: UIColor.blue)
+            ]
+        )
     }
 }
