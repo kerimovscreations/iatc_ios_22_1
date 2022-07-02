@@ -25,28 +25,11 @@ class ViewController: UIViewController {
         
         view.backgroundColor = .white
         
-//        self.vm.seedData()
+//        vm.addV1Data()
+//        self.vm.addImages()
         
-//        self.vm.getRestaurants()
         
-//        self.vm.countCheaperRestaurants()
-        
-//        self.vm.countCheaperRestaurants2()
-        
-//        self.vm.sumMidPrices()
-        
-//        self.vm.sortedByName()
-        
-//        self.vm.sortedByDistance()
-        
-//        self.vm.asyncFetchAllRestaurants()
-        
-//        self.vm.batchUpdateDistance()
-//
-//        self.vm.sortedByDistance()
-//
-//        self.vm.sumMidPrices()
-        
-        self.vm.batchDelete()
+        self.vm.read()
+        self.vm.readAttachments()
     }
 }

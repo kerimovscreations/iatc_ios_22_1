@@ -20,7 +20,19 @@ class CoreDataStack {
     }
     
     private lazy var storeContainer: NSPersistentContainer = {
+        let persistentStoreDescription = NSPersistentStoreDescription()
+        persistentStoreDescription.shouldMigrateStoreAutomatically = true
+        persistentStoreDescription.shouldInferMappingModelAutomatically = false
+        
         let container = NSPersistentContainer(name: self.modelName)
+        
+        container.persistentStoreCoordinator.addPersistentStore(with: persistentStoreDescription, completionHandler: { (persistentStoreDescription, error) in
+            if let error = error {
+                print("Unable to Add Persistent Store")
+                print("\(error.localizedDescription)")
+            }
+        })
+        
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
                 print("Unresolved error \(error), \(error.userInfo)")

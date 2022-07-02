@@ -11,239 +11,110 @@ import CoreData
 
 class ViewModel {
     
-    private let dataStack = CoreDataStack(modelName: "Restaurant")
+    private let dataStack = CoreDataStack(modelName: "UnCloudNotesDatamodel")
     
-    // predicates
-    
-    private lazy var cheaperMidPricePredicate: NSPredicate = {
-        return NSPredicate(format: "%K < %f", #keyPath(Restaurant.midPrice), 500.0)
-    }()
-    
-    // sorting
-    
-    private lazy var nameSortDesc: NSSortDescriptor = {
-        let compareSelector = #selector(NSString.localizedStandardCompare(_:))
+    func addV1Data() {
+        let entity = NSEntityDescription.entity(forEntityName: "Note", in: dataStack.managedContext)!
         
-        return NSSortDescriptor(
-            key: #keyPath(Restaurant.name),
-            ascending: true,
-            selector: compareSelector
-        )
-    }()
+        let note1 = Note.init(entity: entity, insertInto: dataStack.managedContext)
+        
+        note1.body = "Note 1"
+        note1.dateCreated = Date()
+        note1.displayIndex = 0
+        note1.title = "Title 1"
+        
+        let note2 = Note.init(entity: entity, insertInto: dataStack.managedContext)
+        
+        note2.body = "Note 2"
+        note2.dateCreated = Date()
+        note2.displayIndex = 1
+        note2.title = "Title 2"
+        
+        let note3 = Note.init(entity: entity, insertInto: dataStack.managedContext)
+        
+        note3.body = "Note 3"
+        note3.dateCreated = Date()
+        note3.displayIndex = 2
+        note3.title = "Title 3"
+        
+        dataStack.saveContext()
+        
+        print("Saved")
+    }
     
-    private lazy var distanceDesc: NSSortDescriptor = {
-        return NSSortDescriptor(key: #keyPath(Restaurant.distance), ascending: true)
-    }()
-
-    func seedData() {
-        if let path = Bundle.main.path(forResource: "restaurants", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                
-                let decoding = JSONDecoder.init()
-                
-                let restaurants = try decoding.decode([RestaurantCodable].self, from: data)
-                
-                //                print(restaurants)
-                
-                
-                let context = dataStack.managedContext
-                
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSz"
-                
-                try restaurants.forEach { restaurant in
-                    
-                    let objRestaurant = Restaurant(entity: Restaurant.entity(), insertInto: context)
-                    objRestaurant.id = restaurant.id
-                    objRestaurant.name = restaurant.name
-                    if let date = formatter.date(from: restaurant.createdAt) {
-                        objRestaurant.createdAt = date
-                    }
-                    
-                    objRestaurant.rateCount = Int32(restaurant.rate_count)
-                    objRestaurant.distance = Int32(restaurant.distance)
-                    objRestaurant.midPrice = Double(restaurant.mid_price) ?? 0.0
-                    
-                    try context.save()
+    func read() {
+        let fetchRequest = Note.fetchRequest()
+        
+        do {
+            let results = try dataStack.managedContext.fetch(fetchRequest)
+            
+            results.forEach { note in
+                print(note.title)
+                if let firstAttachment = note.attachments?.first as? ImageAttachment {
+                    print(firstAttachment.image)
+                } else {
+                    print("no attachment")
                 }
-                
-                print("done")
-            } catch {
-                // handle error
-            }
-        }
-    }
-    
-    func getRestaurants() {
-        guard let model = dataStack.managedContext.persistentStoreCoordinator?.managedObjectModel,
-              let fetchRequest = model.fetchRequestTemplate(forName: "FetchRequest") as? NSFetchRequest<Restaurant> else {
-            print("Cannot find fetch request")
-            return
-        }
-        
-        do {
-            let restaurans = try dataStack.managedContext.fetch(fetchRequest)
-            
-            print(restaurans)
-        } catch {
-            print(error)
-        }
-    }
-    
-    func countCheaperRestaurants() {
-        let fetchRequest = NSFetchRequest<NSNumber>.init(entityName: "Restaurant")
-        fetchRequest.predicate = self.cheaperMidPricePredicate
-        fetchRequest.resultType = .countResultType
-        
-        do {
-            let countResult = try dataStack.managedContext.fetch(fetchRequest)
-            
-            if let count = countResult.first?.intValue {
-                print(count)
             }
         } catch {
             print(error)
         }
     }
     
-    func countCheaperRestaurants2() {
-        let fetchRequest = Restaurant.fetchRequest()
-        fetchRequest.predicate = self.cheaperMidPricePredicate
-        
-        do {
-            let countResult = try dataStack.managedContext.count(for: fetchRequest)
-            
-            print(countResult)
-        } catch {
-            print(error)
-        }
-    }
-    
-    func sumMidPrices() {
-        let fetchRequest = NSFetchRequest<NSDictionary>.init(entityName: "Restaurant")
-        fetchRequest.resultType = .dictionaryResultType
-        
-        let sumExpressionDesc = NSExpressionDescription()
-        sumExpressionDesc.name = "sumMidPrice"
-        
-        let sumExpression = NSExpression(forKeyPath: #keyPath(Restaurant.midPrice))
-        sumExpressionDesc.expression = NSExpression(forFunction: "sum:", arguments: [sumExpression])
-        sumExpressionDesc.expressionResultType = .doubleAttributeType
-        
-        fetchRequest.propertiesToFetch = [sumExpressionDesc]
-        
-        do {
-            let result = try dataStack.managedContext.fetch(fetchRequest)
-            
-            if let dict = result.first {
-                let sumMidPrice = dict["sumMidPrice"] as? Double ?? 0.0
-                
-                print(sumMidPrice)
-            }
-        } catch {
-            print(error)
-        }
-    }
-    
-    func sortedByName() {
-        let fetchRequest = Restaurant.fetchRequest()
-        
-        fetchRequest.sortDescriptors = [self.nameSortDesc]
-        
-        do {
-            let restaurants = try dataStack.managedContext.fetch(fetchRequest)
-            
-            restaurants.forEach { restaurant in
-                print(restaurant.name ?? "NA")
-            }
-        } catch {
-            print(error)
-        }
-    }
-    
-    func sortedByDistance() {
-        let fetchRequest = Restaurant.fetchRequest()
-        
-        fetchRequest.sortDescriptors = [self.distanceDesc]
-        
-        do {
-            let restaurants = try dataStack.managedContext.fetch(fetchRequest)
-            
-            restaurants.forEach { restaurant in
-                print("Distance: \(restaurant.distance) Name: \(restaurant.name ?? "NA")")
-            }
-        } catch {
-            print(error)
-        }
-    }
-    
-    func asyncFetchAllRestaurants() {
-        let fetchRequest = Restaurant.fetchRequest()
-        
-        let asyncFetchRequest = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { result in
-            
-            result.cancel()
+    func readAttachments() {
+        let fetchRequest = ImageAttachment.fetchRequest() as NSFetchRequest<ImageAttachment>
 
-            guard let restaurants = result.finalResult else { return }
-            
-            print(restaurants.count)
-        }
-        
         do {
-            try dataStack.managedContext.execute(asyncFetchRequest)
-        } catch {
-            print(error)
-        }
-    }
-    
-    func batchUpdateDistance() {
-        let batchUpdate = NSBatchUpdateRequest(entityName: "Restaurant")
-        
-        batchUpdate.propertiesToUpdate = [
-            #keyPath(Restaurant.distance): 150,
-            #keyPath(Restaurant.midPrice): 100
-        ]
-        
-        batchUpdate.affectedStores = dataStack.managedContext.persistentStoreCoordinator?.persistentStores
-        
-        batchUpdate.resultType = .updatedObjectsCountResultType
-        
-        do {
-            let batchResult = try dataStack.managedContext.execute(batchUpdate) as? NSBatchUpdateResult
-            
-            if let count = batchResult?.result as? Int {
-                print("Updated elements: \(count)")
+            let results = try dataStack.managedContext.fetch(fetchRequest)
+
+            results.forEach { attachment in
+                print(attachment.image)
+                print(attachment.caption)
+                print(attachment.width)
+                if let note = attachment.note {
+                    print("note \(note.title)")
+                } else {
+                    print("no note found")
+                }
             }
         } catch {
             print(error)
         }
     }
     
-    func batchDelete() {
-        let fetchRequest = NSFetchRequest<NSManagedObjectID>(entityName: "Restaurant")
-        fetchRequest.resultType = .managedObjectIDResultType
+    func addImages() {
+        let fetchRequest = Note.fetchRequest()
         
         do {
-            let ids = try dataStack.managedContext.fetch(fetchRequest)
+            let results = try dataStack.managedContext.fetch(fetchRequest)
             
-            if ids.isEmpty {
-                return
-            }
+            let attachmentEntity = NSEntityDescription.entity(forEntityName: "Attachment", in: dataStack.managedContext)!
             
-            let batchDelete = NSBatchDeleteRequest(objectIDs: ids)
+            let note1 = results[0]
             
-            batchDelete.resultType = .resultTypeCount
+            let attachment1 = ImageAttachment.init(entity: attachmentEntity, insertInto: dataStack.managedContext)
             
-            let batchResult = try dataStack.managedContext.execute(batchDelete) as? NSBatchDeleteResult
+            attachment1.image = "image3"
+            attachment1.caption = "122"
+            attachment1.width = 100.0
+            attachment1.height = 50.0
+            attachment1.dateCreated = Date()
+            attachment1.note = note1
             
-            if let count = batchResult?.result as? Int {
-                print("Deleted items: \(count)")
-            }
+            let note2 = results[1]
+            
+            let attachment2 = ImageAttachment.init(entity: attachmentEntity, insertInto: dataStack.managedContext)
+            
+            attachment2.image = "image4"
+            attachment2.caption = "126"
+            attachment2.width = 100.0
+            attachment2.height = 50.0
+            attachment2.dateCreated = Date()
+            attachment2.note = note2
+            
+            dataStack.saveContext()
         } catch {
             print(error)
         }
-        
-        
     }
 }
