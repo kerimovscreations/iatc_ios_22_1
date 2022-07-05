@@ -25,11 +25,7 @@ class ViewController: UIViewController {
         
         view.backgroundColor = .white
         
-//        vm.addV1Data()
-//        self.vm.addImages()
-        
-        
-        self.vm.read()
-        self.vm.readAttachments()
+//        self.vm.writeData()
+        self.vm.getData()
     }
 }

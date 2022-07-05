@@ -8,5 +8,7 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We need an access to your location coordinates in order to improve recommendation</string>
+    <key>NSFaceIDUsageDescription</key>
+    <string>To store your secret credentials</string>
 </dict>
 </plist>

@@ -17,17 +17,8 @@
 		2D583BAA284FB0AF00D80A66 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2D583BA9284FB0AF00D80A66 /* RxCocoa */; };
 		2D583BAC284FB0AF00D80A66 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 2D583BAB284FB0AF00D80A66 /* RxRelay */; };
 		2D583BAE284FB0AF00D80A66 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2D583BAD284FB0AF00D80A66 /* RxSwift */; };
-		2DC86362286B515000C31ECC /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC86361286B515000C31ECC /* CoreDataStack.swift */; };
-		2DC86370287098E600C31ECC /* UnCloudNotesDatamodel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2DC8636E287098E600C31ECC /* UnCloudNotesDatamodel.xcdatamodeld */; };
-		2DC8637828709B8B00C31ECC /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC8637628709B8B00C31ECC /* Note+CoreDataClass.swift */; };
-		2DC8637928709B8B00C31ECC /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC8637728709B8B00C31ECC /* Note+CoreDataProperties.swift */; };
-		2DC8637D28709F8200C31ECC /* Attachment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC8637B28709F8200C31ECC /* Attachment+CoreDataClass.swift */; };
-		2DC8637E28709F8200C31ECC /* Attachment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC8637C28709F8200C31ECC /* Attachment+CoreDataProperties.swift */; };
-		2DC863802870A18100C31ECC /* UnCloudNotesMappingModel_v2_to_v3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 2DC8637F2870A18100C31ECC /* UnCloudNotesMappingModel_v2_to_v3.xcmappingmodel */; };
-		2DC863842870A8F500C31ECC /* ImageAttachment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC863822870A8F500C31ECC /* ImageAttachment+CoreDataClass.swift */; };
-		2DC863852870A8F500C31ECC /* ImageAttachment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC863832870A8F500C31ECC /* ImageAttachment+CoreDataProperties.swift */; };
-		2DC863872870A97A00C31ECC /* UnCloudNotesMappingModel_v3_to_v4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 2DC863862870A97A00C31ECC /* UnCloudNotesMappingModel_v3_to_v4.xcmappingmodel */; };
-		2DC863892870AA2800C31ECC /* AttachmentToImageAttachmentMigrationPolicyV3toV4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC863882870AA2800C31ECC /* AttachmentToImageAttachmentMigrationPolicyV3toV4.swift */; };
+		2DC8638C28748ED800C31ECC /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 2DC8638B28748ED800C31ECC /* Realm */; };
+		2DC8638E28748ED800C31ECC /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2DC8638D28748ED800C31ECC /* RealmSwift */; };
 		65315ED927FC9910000CF129 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65315ED827FC9910000CF129 /* AppDelegate.swift */; };
 		65315EE227FC9917000CF129 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65315EE127FC9917000CF129 /* Assets.xcassets */; };
 		65315EE527FC9917000CF129 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65315EE327FC9917000CF129 /* LaunchScreen.storyboard */; };
@@ -38,20 +29,6 @@
 		2D18A35F285E27B800EA3545 /* RobotoFlex-VariableFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoFlex-VariableFont.ttf"; sourceTree = "<group>"; };
 		2D18A363285E2F5F00EA3545 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2D190D052814605600BCB789 /* Mulish-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulish-SemiBold.ttf"; sourceTree = "<group>"; };
-		2DC86361286B515000C31ECC /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		2DC8636F287098E600C31ECC /* UnCloudNotesDatamodel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UnCloudNotesDatamodel.xcdatamodel; sourceTree = "<group>"; };
-		2DC863712870994E00C31ECC /* UnCloudNotesDatamodel v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "UnCloudNotesDatamodel v2.xcdatamodel"; sourceTree = "<group>"; };
-		2DC8637628709B8B00C31ECC /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
-		2DC8637728709B8B00C31ECC /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2DC8637A28709EF500C31ECC /* UnCloudNotesDatamodel v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "UnCloudNotesDatamodel v3.xcdatamodel"; sourceTree = "<group>"; };
-		2DC8637B28709F8200C31ECC /* Attachment+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Attachment+CoreDataClass.swift"; sourceTree = "<group>"; };
-		2DC8637C28709F8200C31ECC /* Attachment+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Attachment+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2DC8637F2870A18100C31ECC /* UnCloudNotesMappingModel_v2_to_v3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = UnCloudNotesMappingModel_v2_to_v3.xcmappingmodel; sourceTree = "<group>"; };
-		2DC863812870A85900C31ECC /* UnCloudNotesDatamodel v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "UnCloudNotesDatamodel v4.xcdatamodel"; sourceTree = "<group>"; };
-		2DC863822870A8F500C31ECC /* ImageAttachment+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageAttachment+CoreDataClass.swift"; sourceTree = "<group>"; };
-		2DC863832870A8F500C31ECC /* ImageAttachment+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageAttachment+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2DC863862870A97A00C31ECC /* UnCloudNotesMappingModel_v3_to_v4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = UnCloudNotesMappingModel_v3_to_v4.xcmappingmodel; sourceTree = "<group>"; };
-		2DC863882870AA2800C31ECC /* AttachmentToImageAttachmentMigrationPolicyV3toV4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentToImageAttachmentMigrationPolicyV3toV4.swift; sourceTree = "<group>"; };
 		65315ED527FC9910000CF129 /* Session 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Session 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65315ED827FC9910000CF129 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65315EDC27FC9910000CF129 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,9 +45,11 @@
 				2D583BAC284FB0AF00D80A66 /* RxRelay in Frameworks */,
 				2D583BA5284FA42800D80A66 /* FBLPromises in Frameworks */,
 				2D190D032814541400BCB789 /* SnapKit in Frameworks */,
+				2DC8638E28748ED800C31ECC /* RealmSwift in Frameworks */,
 				2D583BAA284FB0AF00D80A66 /* RxCocoa in Frameworks */,
 				2D583BA7284FA42800D80A66 /* Promises in Frameworks */,
 				2D583BA2284BBA9100D80A66 /* Alamofire in Frameworks */,
+				2DC8638C28748ED800C31ECC /* Realm in Frameworks */,
 				2D583BAE284FB0AF00D80A66 /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,12 +85,6 @@
 		65315ED727FC9910000CF129 /* Session 1 */ = {
 			isa = PBXGroup;
 			children = (
-				2DC863822870A8F500C31ECC /* ImageAttachment+CoreDataClass.swift */,
-				2DC863832870A8F500C31ECC /* ImageAttachment+CoreDataProperties.swift */,
-				2DC8637B28709F8200C31ECC /* Attachment+CoreDataClass.swift */,
-				2DC8637C28709F8200C31ECC /* Attachment+CoreDataProperties.swift */,
-				2DC8637628709B8B00C31ECC /* Note+CoreDataClass.swift */,
-				2DC8637728709B8B00C31ECC /* Note+CoreDataProperties.swift */,
 				2D190D042814604500BCB789 /* fonts */,
 				65315ED827FC9910000CF129 /* AppDelegate.swift */,
 				65315EDC27FC9910000CF129 /* ViewController.swift */,
@@ -119,11 +92,6 @@
 				65315EE327FC9917000CF129 /* LaunchScreen.storyboard */,
 				65315EE627FC9917000CF129 /* Info.plist */,
 				2D18A363285E2F5F00EA3545 /* ViewModel.swift */,
-				2DC86361286B515000C31ECC /* CoreDataStack.swift */,
-				2DC8636E287098E600C31ECC /* UnCloudNotesDatamodel.xcdatamodeld */,
-				2DC8637F2870A18100C31ECC /* UnCloudNotesMappingModel_v2_to_v3.xcmappingmodel */,
-				2DC863862870A97A00C31ECC /* UnCloudNotesMappingModel_v3_to_v4.xcmappingmodel */,
-				2DC863882870AA2800C31ECC /* AttachmentToImageAttachmentMigrationPolicyV3toV4.swift */,
 			);
 			path = "Session 1";
 			sourceTree = "<group>";
@@ -152,6 +120,8 @@
 				2D583BA9284FB0AF00D80A66 /* RxCocoa */,
 				2D583BAB284FB0AF00D80A66 /* RxRelay */,
 				2D583BAD284FB0AF00D80A66 /* RxSwift */,
+				2DC8638B28748ED800C31ECC /* Realm */,
+				2DC8638D28748ED800C31ECC /* RealmSwift */,
 			);
 			productName = "Session 1";
 			productReference = 65315ED527FC9910000CF129 /* Session 1.app */;
@@ -186,6 +156,7 @@
 				2D583BA0284BBA9100D80A66 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				2D583BA3284FA42800D80A66 /* XCRemoteSwiftPackageReference "promises" */,
 				2D583BA8284FB0AF00D80A66 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				2DC8638A28748ED800C31ECC /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 65315ED627FC9910000CF129 /* Products */;
 			projectDirPath = "";
@@ -216,19 +187,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D18A364285E2F5F00EA3545 /* ViewModel.swift in Sources */,
-				2DC863842870A8F500C31ECC /* ImageAttachment+CoreDataClass.swift in Sources */,
-				2DC863852870A8F500C31ECC /* ImageAttachment+CoreDataProperties.swift in Sources */,
-				2DC8637928709B8B00C31ECC /* Note+CoreDataProperties.swift in Sources */,
-				2DC863872870A97A00C31ECC /* UnCloudNotesMappingModel_v3_to_v4.xcmappingmodel in Sources */,
 				65315EEF27FCA360000CF129 /* ViewController.swift in Sources */,
-				2DC863802870A18100C31ECC /* UnCloudNotesMappingModel_v2_to_v3.xcmappingmodel in Sources */,
-				2DC86370287098E600C31ECC /* UnCloudNotesDatamodel.xcdatamodeld in Sources */,
-				2DC8637828709B8B00C31ECC /* Note+CoreDataClass.swift in Sources */,
 				65315ED927FC9910000CF129 /* AppDelegate.swift in Sources */,
-				2DC8637E28709F8200C31ECC /* Attachment+CoreDataProperties.swift in Sources */,
-				2DC8637D28709F8200C31ECC /* Attachment+CoreDataClass.swift in Sources */,
-				2DC86362286B515000C31ECC /* CoreDataStack.swift in Sources */,
-				2DC863892870AA2800C31ECC /* AttachmentToImageAttachmentMigrationPolicyV3toV4.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +436,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		2DC8638A28748ED800C31ECC /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -514,23 +482,17 @@
 			package = 2D583BA8284FB0AF00D80A66 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
 		};
-/* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		2DC8636E287098E600C31ECC /* UnCloudNotesDatamodel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				2DC863812870A85900C31ECC /* UnCloudNotesDatamodel v4.xcdatamodel */,
-				2DC8637A28709EF500C31ECC /* UnCloudNotesDatamodel v3.xcdatamodel */,
-				2DC863712870994E00C31ECC /* UnCloudNotesDatamodel v2.xcdatamodel */,
-				2DC8636F287098E600C31ECC /* UnCloudNotesDatamodel.xcdatamodel */,
-			);
-			currentVersion = 2DC863812870A85900C31ECC /* UnCloudNotesDatamodel v4.xcdatamodel */;
-			path = UnCloudNotesDatamodel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
+		2DC8638B28748ED800C31ECC /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2DC8638A28748ED800C31ECC /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
 		};
-/* End XCVersionGroup section */
+		2DC8638D28748ED800C31ECC /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2DC8638A28748ED800C31ECC /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 65315ECD27FC990F000CF129 /* Project object */;
 }
