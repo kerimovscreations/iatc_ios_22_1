@@ -14,5 +14,16 @@
 	<true/>
 	<key>UIFileSharingEnabled</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Application needs an access to your camera to capture avatar picture</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Application needs an access to library to pick photo for your avatar</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Application needs an access to record video sound</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
 </dict>
 </plist>

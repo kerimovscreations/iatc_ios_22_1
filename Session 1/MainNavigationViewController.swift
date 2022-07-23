@@ -12,16 +12,12 @@ class MainNavigationViewController: UINavigationController, UIGestureRecognizerD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let vc = ViewController()
+        let vc = VideoViewController()
         
         self.viewControllers = [vc]
         
         interactivePopGestureRecognizer?.delegate = self
         interactivePopGestureRecognizer?.isEnabled = true
-        
-        
-        navigationBar.prefersLargeTitles = true
-        vc.navigationItem.title = "First"
     }
 
 }

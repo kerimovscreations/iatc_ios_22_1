@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "prynttrimmerview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/HHK1/PryntTrimmerView",
+      "state" : {
+        "revision" : "ac1b60a22c7e6a6514de7a66d2f3d5b537c956d5",
+        "version" : "4.0.2"
+      }
+    },
+    {
       "identity" : "realm-core",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core",
@@ -52,6 +61,33 @@
       "state" : {
         "revision" : "f222cbdf325885926566172f6f5f06af95473158",
         "version" : "5.6.0"
+      }
+    },
+    {
+      "identity" : "stevia",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/freshOS/Stevia",
+      "state" : {
+        "revision" : "87dd17a86240f16788239a78dd8be11c4b013150",
+        "version" : "4.8.0"
+      }
+    },
+    {
+      "identity" : "swinject",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Swinject/Swinject",
+      "state" : {
+        "revision" : "f10b6e9ebff440f985c43008f7c2d097639fcb81",
+        "version" : "2.8.1"
+      }
+    },
+    {
+      "identity" : "ypimagepicker",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Yummypets/YPImagePicker",
+      "state" : {
+        "revision" : "4dbae7a1f69db3d65c47f4106d0ca09f678edeaf",
+        "version" : "5.2.1"
       }
     }
   ],
