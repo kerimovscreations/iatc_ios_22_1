@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Session 1
+
+  Created by Karim Karimov on 23.07.22.
+  
+*/
+
+"title_home_page" = "Home page";
+"title_camera_page" = "Camera page";
+"title_profile_page" = "Profile page";
+"title_twitter_page" = "Twitter page";
