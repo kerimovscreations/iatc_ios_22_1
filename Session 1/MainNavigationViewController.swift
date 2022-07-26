@@ -12,7 +12,7 @@ class MainNavigationViewController: UINavigationController, UIGestureRecognizerD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let vc = VideoViewController()
+        let vc = ViewController()
         
         self.viewControllers = [vc]
         

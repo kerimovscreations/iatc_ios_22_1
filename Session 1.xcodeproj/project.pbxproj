@@ -17,8 +17,6 @@
 		2D583BAA284FB0AF00D80A66 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2D583BA9284FB0AF00D80A66 /* RxCocoa */; };
 		2D583BAC284FB0AF00D80A66 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 2D583BAB284FB0AF00D80A66 /* RxRelay */; };
 		2D583BAE284FB0AF00D80A66 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2D583BAD284FB0AF00D80A66 /* RxSwift */; };
-		2DA961C3288BDF0900916455 /* test.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA961C2288BDF0900916455 /* test.mp3 */; };
-		2DA961C5288BE62D00916455 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA961C4288BE62D00916455 /* VideoViewController.swift */; };
 		2DA961C7288BEAF400916455 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2DA961C6288BEAF400916455 /* swiftgen.yml */; };
 		2DA961CE288BECA400916455 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2DA961D0288BECA400916455 /* Localizable.strings */; };
 		2DA961D4288BEDAF00916455 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DA961D3288BEDAF00916455 /* Colors.xcassets */; };
@@ -39,12 +37,8 @@
 		2D18A35F285E27B800EA3545 /* RobotoFlex-VariableFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoFlex-VariableFont.ttf"; sourceTree = "<group>"; };
 		2D18A363285E2F5F00EA3545 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2D190D052814605600BCB789 /* Mulish-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulish-SemiBold.ttf"; sourceTree = "<group>"; };
-		2DA961C2288BDF0900916455 /* test.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test.mp3; sourceTree = "<group>"; };
-		2DA961C4288BE62D00916455 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		2DA961C6288BEAF400916455 /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
-		2DA961CA288BEC0200916455 /* XCAssets+Image+Generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCAssets+Image+Generated.swift"; sourceTree = "<group>"; };
 		2DA961CF288BECA400916455 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		2DA961D1288BECC600916455 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		2DA961D3288BEDAF00916455 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		2DA961D5288BEDBD00916455 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		2DA961D9288BEF5200916455 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -109,8 +103,6 @@
 		65315ECC27FC990F000CF129 = {
 			isa = PBXGroup;
 			children = (
-				2DA961D1288BECC600916455 /* Strings.swift */,
-				2DA961CA288BEC0200916455 /* XCAssets+Image+Generated.swift */,
 				2DA961C6288BEAF400916455 /* swiftgen.yml */,
 				65315ED727FC9910000CF129 /* Session 1 */,
 				65315ED627FC9910000CF129 /* Products */,
@@ -130,7 +122,6 @@
 			children = (
 				2DA961D8288BEF5200916455 /* Generated */,
 				2DA961D7288BEDDB00916455 /* Assets */,
-				2DA961C2288BDF0900916455 /* test.mp3 */,
 				2D190D042814604500BCB789 /* fonts */,
 				65315ED827FC9910000CF129 /* AppDelegate.swift */,
 				65315EDC27FC9910000CF129 /* ViewController.swift */,
@@ -138,7 +129,6 @@
 				65315EE627FC9917000CF129 /* Info.plist */,
 				2D18A363285E2F5F00EA3545 /* ViewModel.swift */,
 				2DC8638F288700C500C31ECC /* MainNavigationViewController.swift */,
-				2DA961C4288BE62D00916455 /* VideoViewController.swift */,
 				2DA961D0288BECA400916455 /* Localizable.strings */,
 			);
 			path = "Session 1";
@@ -228,7 +218,6 @@
 				2DA961D6288BEDBD00916455 /* Media.xcassets in Resources */,
 				2DA961D4288BEDAF00916455 /* Colors.xcassets in Resources */,
 				2D18A360285E27B800EA3545 /* RobotoFlex-VariableFont.ttf in Resources */,
-				2DA961C3288BDF0900916455 /* test.mp3 in Resources */,
 				2D190D062814605600BCB789 /* Mulish-SemiBold.ttf in Resources */,
 				65315EE527FC9917000CF129 /* LaunchScreen.storyboard in Resources */,
 				2DA961CE288BECA400916455 /* Localizable.strings in Resources */,
@@ -268,7 +257,6 @@
 				2DC86390288700C500C31ECC /* MainNavigationViewController.swift in Sources */,
 				2DA961DB288BEF5200916455 /* Strings.swift in Sources */,
 				65315EEF27FCA360000CF129 /* ViewController.swift in Sources */,
-				2DA961C5288BE62D00916455 /* VideoViewController.swift in Sources */,
 				2DA961DC288BEF5200916455 /* XCAssets+Image+Generated.swift in Sources */,
 				65315ED927FC9910000CF129 /* AppDelegate.swift in Sources */,
 			);
