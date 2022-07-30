@@ -2,28 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleIcons</key>
+	<dict/>
+	<key>CFBundleIcons~ipad</key>
+	<dict/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UIAppFonts</key>
 	<array>
 		<string>RobotoFlex-VariableFont.ttf</string>
 	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We need an access to your location coordinates in order to improve recommendation</string>
-	<key>NSFaceIDUsageDescription</key>
-	<string>To store your secret credentials</string>
-	<key>LSSupportsOpeningDocumentsInPlace</key>
-	<true/>
 	<key>UIFileSharingEnabled</key>
 	<true/>
-	<key>NSCameraUsageDescription</key>
-	<string>Application needs an access to your camera to capture avatar picture</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Application needs an access to library to pick photo for your avatar</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Application needs an access to record video sound</string>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-    </dict>
 </dict>
 </plist>

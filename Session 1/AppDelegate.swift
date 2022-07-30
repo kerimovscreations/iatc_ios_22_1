@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import presentation
+import Swinject
+import domain
+import data
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,8 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Override point for customization after application launch.
         
+        let assembler = Assembler([
+            DomainAssembly(),
+            PresentationAssembly(),
+            DataAssembly()
+        ])
+        
+        let router: RouterProtocol = Router.init(resolver: assembler.resolver)
+        
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let vc = MainNavigationViewController()
+        let vc = router.firstViewController()
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
         
