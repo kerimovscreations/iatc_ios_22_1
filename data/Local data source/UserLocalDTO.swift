@@ -7,11 +7,16 @@
 
 import Foundation
 import domain
+import RealmSwift
 
-struct UserLocalDTO {
-    let name: String
-    let email: String
-    let phoneNumber1: String
+class UserLocalDTO: Object {
+    static func == (lhs: UserLocalDTO, rhs: UserLocalDTO) -> Bool {
+        lhs.name == rhs.name && lhs.email == rhs.email
+    }
+    
+    @Persisted var name: String = ""
+    @Persisted var email: String = ""
+    @Persisted var phoneNumber1: String = ""
     
     func toDomain() -> UserEntity {
         return UserEntity(

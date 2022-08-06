@@ -26,16 +26,51 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2DDA04D32895828D008A2F96"
+            BuildableName = "domain.framework"
+            BlueprintName = "domain"
+            ReferencedContainer = "container:domain/domain.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2DDA04ED289582B8008A2F96"
+            BuildableName = "data.framework"
+            BlueprintName = "data"
+            ReferencedContainer = "container:data/data.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2DDA048B28958230008A2F96"
+            BuildableName = "presentation.framework"
+            BlueprintName = "presentation"
+            ReferencedContainer = "container:presentation/presentation.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2DDA03FB2895812C008A2F96"
-               BuildableName = "presentationTests.xctest"
-               BlueprintName = "presentationTests"
-               ReferencedContainer = "container:Session 1.xcodeproj">
+               BlueprintIdentifier = "2DDA056E289EBAF2008A2F96"
+               BuildableName = "domainTests.xctest"
+               BlueprintName = "domainTests"
+               ReferencedContainer = "container:domain/domain.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2DDA0585289ECBC1008A2F96"
+               BuildableName = "dataTests.xctest"
+               BlueprintName = "dataTests"
+               ReferencedContainer = "container:data/data.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

@@ -8,7 +8,7 @@
 import Foundation
 import domain
 
-struct UserRemoteDTO: Decodable {
+struct UserRemoteDTO: Decodable, Equatable {
     let name: String
     let email: String
     let phoneNumber: String
@@ -21,10 +21,12 @@ struct UserRemoteDTO: Decodable {
     }
     
     func toLocal() -> UserLocalDTO {
-        return UserLocalDTO(
-            name: self.name,
-            email: self.email,
-            phoneNumber1: self.phoneNumber
-        )
+        let dto = UserLocalDTO()
+        
+        dto.name = self.name
+        dto.email = self.email
+        dto.phoneNumber1 = self.phoneNumber
+        
+        return dto
     }
 }

@@ -19,7 +19,27 @@
 		2DDA055A289595A9008A2F96 /* UserLocalDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA0559289595A9008A2F96 /* UserLocalDataSourceProtocol.swift */; };
 		2DDA055C289595C3008A2F96 /* UserLocalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA055B289595C3008A2F96 /* UserLocalDTO.swift */; };
 		2DDA055E28959603008A2F96 /* UserLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA055D28959603008A2F96 /* UserLocalDataSource.swift */; };
+		2DDA0568289EB71F008A2F96 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 2DDA0567289EB71F008A2F96 /* Realm */; };
+		2DDA056A289EB71F008A2F96 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2DDA0569289EB71F008A2F96 /* RealmSwift */; };
+		2DDA0589289ECBC1008A2F96 /* dataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA0588289ECBC1008A2F96 /* dataTests.swift */; };
+		2DDA058A289ECBC1008A2F96 /* data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DDA04EE289582B8008A2F96 /* data.framework */; platformFilter = ios; };
+		2DDA0592289ECBE2008A2F96 /* UserRepoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA0591289ECBE2008A2F96 /* UserRepoTests.swift */; };
+		2DDA0599289ECC7A008A2F96 /* UserLocalDataSourceMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA0598289ECC7A008A2F96 /* UserLocalDataSourceMockData.swift */; };
+		2DDA059B289ECD0C008A2F96 /* UserRemoteDataSourceMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA059A289ECD0C008A2F96 /* UserRemoteDataSourceMockData.swift */; };
+		2DDA059D289ED10F008A2F96 /* UserLocalDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA059C289ED10F008A2F96 /* UserLocalDataSourceTests.swift */; };
+		2DDA05A2289ED337008A2F96 /* LocalDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA05A0289ED1A5008A2F96 /* LocalDataProvider.swift */; };
+		2DDA05A4289ED39B008A2F96 /* LocalDataProviderMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA05A3289ED39B008A2F96 /* LocalDataProviderMockData.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2DDA058B289ECBC1008A2F96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2DDA04E5289582B8008A2F96 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2DDA04ED289582B8008A2F96;
+			remoteInfo = data;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		2DDA051828958433008A2F96 /* Embed Frameworks */ = {
@@ -47,6 +67,14 @@
 		2DDA0559289595A9008A2F96 /* UserLocalDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocalDataSourceProtocol.swift; sourceTree = "<group>"; };
 		2DDA055B289595C3008A2F96 /* UserLocalDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocalDTO.swift; sourceTree = "<group>"; };
 		2DDA055D28959603008A2F96 /* UserLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocalDataSource.swift; sourceTree = "<group>"; };
+		2DDA0586289ECBC1008A2F96 /* dataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DDA0588289ECBC1008A2F96 /* dataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataTests.swift; sourceTree = "<group>"; };
+		2DDA0591289ECBE2008A2F96 /* UserRepoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepoTests.swift; sourceTree = "<group>"; };
+		2DDA0598289ECC7A008A2F96 /* UserLocalDataSourceMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocalDataSourceMockData.swift; sourceTree = "<group>"; };
+		2DDA059A289ECD0C008A2F96 /* UserRemoteDataSourceMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRemoteDataSourceMockData.swift; sourceTree = "<group>"; };
+		2DDA059C289ED10F008A2F96 /* UserLocalDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocalDataSourceTests.swift; sourceTree = "<group>"; };
+		2DDA05A0289ED1A5008A2F96 /* LocalDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataProvider.swift; sourceTree = "<group>"; };
+		2DDA05A3289ED39B008A2F96 /* LocalDataProviderMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataProviderMockData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +82,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DDA056A289EB71F008A2F96 /* RealmSwift in Frameworks */,
+				2DDA0568289EB71F008A2F96 /* Realm in Frameworks */,
 				2DDA051628958433008A2F96 /* domain.framework in Frameworks */,
 				2DDA053028958716008A2F96 /* Alamofire in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DDA0583289ECBC1008A2F96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DDA058A289ECBC1008A2F96 /* data.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,11 +103,13 @@
 		2DDA04E4289582B8008A2F96 = {
 			isa = PBXGroup;
 			children = (
+				2DDA059F289ED19C008A2F96 /* Base */,
 				2DDA055228959212008A2F96 /* Local data source */,
 				2DDA05512895920A008A2F96 /* Remote data source */,
 				2DDA054A28958D0F008A2F96 /* DI */,
 				2DDA053A28958872008A2F96 /* Repositories */,
 				2DDA04F0289582B8008A2F96 /* data */,
+				2DDA0587289ECBC1008A2F96 /* dataTests */,
 				2DDA04EF289582B8008A2F96 /* Products */,
 				2DDA051428958433008A2F96 /* Frameworks */,
 			);
@@ -79,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				2DDA04EE289582B8008A2F96 /* data.framework */,
+				2DDA0586289ECBC1008A2F96 /* dataTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,6 +176,59 @@
 			path = "Local data source";
 			sourceTree = "<group>";
 		};
+		2DDA0587289ECBC1008A2F96 /* dataTests */ = {
+			isa = PBXGroup;
+			children = (
+				2DDA0597289ECC66008A2F96 /* MockData */,
+				2DDA0590289ECBCC008A2F96 /* Repositories */,
+				2DDA0588289ECBC1008A2F96 /* dataTests.swift */,
+			);
+			path = dataTests;
+			sourceTree = "<group>";
+		};
+		2DDA0590289ECBCC008A2F96 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				2DDA0591289ECBE2008A2F96 /* UserRepoTests.swift */,
+				2DDA059C289ED10F008A2F96 /* UserLocalDataSourceTests.swift */,
+			);
+			name = Repositories;
+			sourceTree = "<group>";
+		};
+		2DDA0593289ECC3C008A2F96 /* Remote data source */ = {
+			isa = PBXGroup;
+			children = (
+				2DDA059A289ECD0C008A2F96 /* UserRemoteDataSourceMockData.swift */,
+			);
+			path = "Remote data source";
+			sourceTree = "<group>";
+		};
+		2DDA0596289ECC59008A2F96 /* Local data source */ = {
+			isa = PBXGroup;
+			children = (
+				2DDA0598289ECC7A008A2F96 /* UserLocalDataSourceMockData.swift */,
+				2DDA05A3289ED39B008A2F96 /* LocalDataProviderMockData.swift */,
+			);
+			path = "Local data source";
+			sourceTree = "<group>";
+		};
+		2DDA0597289ECC66008A2F96 /* MockData */ = {
+			isa = PBXGroup;
+			children = (
+				2DDA0593289ECC3C008A2F96 /* Remote data source */,
+				2DDA0596289ECC59008A2F96 /* Local data source */,
+			);
+			path = MockData;
+			sourceTree = "<group>";
+		};
+		2DDA059F289ED19C008A2F96 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				2DDA05A0289ED1A5008A2F96 /* LocalDataProvider.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -166,10 +260,30 @@
 			name = data;
 			packageProductDependencies = (
 				2DDA052F28958716008A2F96 /* Alamofire */,
+				2DDA0567289EB71F008A2F96 /* Realm */,
+				2DDA0569289EB71F008A2F96 /* RealmSwift */,
 			);
 			productName = data;
 			productReference = 2DDA04EE289582B8008A2F96 /* data.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		2DDA0585289ECBC1008A2F96 /* dataTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2DDA058D289ECBC1008A2F96 /* Build configuration list for PBXNativeTarget "dataTests" */;
+			buildPhases = (
+				2DDA0582289ECBC1008A2F96 /* Sources */,
+				2DDA0583289ECBC1008A2F96 /* Frameworks */,
+				2DDA0584289ECBC1008A2F96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2DDA058C289ECBC1008A2F96 /* PBXTargetDependency */,
+			);
+			name = dataTests;
+			productName = dataTests;
+			productReference = 2DDA0586289ECBC1008A2F96 /* dataTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -178,11 +292,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					2DDA04ED289582B8008A2F96 = {
 						CreatedOnToolsVersion = 13.4.1;
 						LastSwiftMigration = 1340;
+					};
+					2DDA0585289ECBC1008A2F96 = {
+						CreatedOnToolsVersion = 13.4.1;
 					};
 				};
 			};
@@ -197,18 +315,27 @@
 			mainGroup = 2DDA04E4289582B8008A2F96;
 			packageReferences = (
 				2DDA052E28958716008A2F96 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				2DDA0566289EB71F008A2F96 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 2DDA04EF289582B8008A2F96 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				2DDA04ED289582B8008A2F96 /* data */,
+				2DDA0585289ECBC1008A2F96 /* dataTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2DDA04EC289582B8008A2F96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DDA0584289ECBC1008A2F96 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -223,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DDA05562895926C008A2F96 /* UserRemoteDTO.swift in Sources */,
+				2DDA05A2289ED337008A2F96 /* LocalDataProvider.swift in Sources */,
 				2DDA055E28959603008A2F96 /* UserLocalDataSource.swift in Sources */,
 				2DDA055C289595C3008A2F96 /* UserLocalDTO.swift in Sources */,
 				2DDA055A289595A9008A2F96 /* UserLocalDataSourceProtocol.swift in Sources */,
@@ -233,7 +361,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2DDA0582289ECBC1008A2F96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DDA0592289ECBE2008A2F96 /* UserRepoTests.swift in Sources */,
+				2DDA0589289ECBC1008A2F96 /* dataTests.swift in Sources */,
+				2DDA05A4289ED39B008A2F96 /* LocalDataProviderMockData.swift in Sources */,
+				2DDA0599289ECC7A008A2F96 /* UserLocalDataSourceMockData.swift in Sources */,
+				2DDA059B289ECD0C008A2F96 /* UserRemoteDataSourceMockData.swift in Sources */,
+				2DDA059D289ED10F008A2F96 /* UserLocalDataSourceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2DDA058C289ECBC1008A2F96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 2DDA04ED289582B8008A2F96 /* data */;
+			targetProxy = 2DDA058B289ECBC1008A2F96 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2DDA04F3289582B8008A2F96 /* Debug */ = {
@@ -417,6 +567,38 @@
 			};
 			name = Release;
 		};
+		2DDA058E289ECBC1008A2F96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = iatc.ios.dataTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2DDA058F289ECBC1008A2F96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = iatc.ios.dataTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -438,12 +620,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		2DDA058D289ECBC1008A2F96 /* Build configuration list for PBXNativeTarget "dataTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DDA058E289ECBC1008A2F96 /* Debug */,
+				2DDA058F289ECBC1008A2F96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
 		2DDA052E28958716008A2F96 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		2DDA0566289EB71F008A2F96 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -456,6 +655,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2DDA052E28958716008A2F96 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		2DDA0567289EB71F008A2F96 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2DDA0566289EB71F008A2F96 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		2DDA0569289EB71F008A2F96 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2DDA0566289EB71F008A2F96 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

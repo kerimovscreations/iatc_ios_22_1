@@ -9,6 +9,7 @@ import Foundation
 import Swinject
 import domain
 import Alamofire
+import RealmSwift
 
 public class DataAssembly: Assembly {
     
@@ -32,8 +33,16 @@ public class DataAssembly: Assembly {
             return AF
         }
         
-        container.register(UserLocalDataSourceProtocol.self) { _ in
-            UserLocalDataSource()
+        container.register(Realm.self) { _ in
+            return try! Realm()
+        }
+        
+        container.register(LocalDataProviderProtocol.self) { r in
+            return LocalDataProvider(realm: r.resolve(Realm.self)!)
+        }
+        
+        container.register(UserLocalDataSourceProtocol.self) { r in
+            UserLocalDataSource(localDataProvider: r.resolve(LocalDataProviderProtocol.self)!)
         }.inObjectScope(.container)
     }
 }

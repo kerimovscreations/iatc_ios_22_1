@@ -7,10 +7,14 @@
 
 import Foundation
 
-public struct UserEntity {
+public struct UserEntity: Equatable {
     public let name: String
     public let email: String
     public let phone: String
+    
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.name == rhs.name && lhs.email == rhs.email
+    }
     
     public init(
         name: String,
