@@ -11,7 +11,7 @@ import RealmSwift
 
 class UserLocalDTO: Object {
     static func == (lhs: UserLocalDTO, rhs: UserLocalDTO) -> Bool {
-        lhs.name == rhs.name && lhs.email == rhs.email
+        return lhs.name == rhs.name && lhs.email == rhs.email
     }
     
     @Persisted var name: String = ""

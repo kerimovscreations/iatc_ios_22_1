@@ -53,7 +53,7 @@ class UserRepoTests: XCTestCase {
                 guard let data = received.element else { return }
                 
                 XCTAssertFalse(savedInLocal)
-                XCTAssertEqual(data, expectedLocalDto)
+                XCTAssertTrue(data == expectedLocalDto)
                 savedInLocal = true
             }
         

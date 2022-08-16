@@ -1,0 +1,3 @@
+reports/*
+fastlane/report.xml
+Gemfile.lock
