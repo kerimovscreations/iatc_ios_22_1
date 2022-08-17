@@ -18,6 +18,12 @@ jobs:
 
       - name: Bundle install
         run: bundle install
+        
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip' # caching pip dependencies
+      - run: pip install lizard
 
       - name: Build and test
         run: |
