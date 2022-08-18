@@ -7,17 +7,62 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DDA04FF289582D9008A2F96 /* data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DDA04FD289582B9008A2F96 /* data.framework */; };
+		2DDA0500289582D9008A2F96 /* data.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2DDA04FD289582B9008A2F96 /* data.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2DDA0501289582D9008A2F96 /* domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DDA04E32895828E008A2F96 /* domain.framework */; };
+		2DDA0502289582D9008A2F96 /* domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2DDA04E32895828E008A2F96 /* domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2DDA0503289582D9008A2F96 /* presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DDA049B28958230008A2F96 /* presentation.framework */; platformFilter = ios; };
+		2DDA0504289582D9008A2F96 /* presentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2DDA049B28958230008A2F96 /* presentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65315ED927FC9910000CF129 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65315ED827FC9910000CF129 /* AppDelegate.swift */; };
-		65315EE227FC9917000CF129 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65315EE127FC9917000CF129 /* Assets.xcassets */; };
 		65315EE527FC9917000CF129 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65315EE327FC9917000CF129 /* LaunchScreen.storyboard */; };
-		65315EEF27FCA360000CF129 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65315EDC27FC9910000CF129 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2DDA049A28958230008A2F96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2DDA049628958230008A2F96 /* presentation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2DDA048C28958230008A2F96;
+			remoteInfo = presentation;
+		};
+		2DDA04E22895828E008A2F96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2DDA04DE2895828D008A2F96 /* domain.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2DDA04D42895828D008A2F96;
+			remoteInfo = domain;
+		};
+		2DDA04FC289582B9008A2F96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2DDA04F8289582B8008A2F96 /* data.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2DDA04EE289582B8008A2F96;
+			remoteInfo = data;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2DDA04092895812C008A2F96 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2DDA0504289582D9008A2F96 /* presentation.framework in Embed Frameworks */,
+				2DDA0502289582D9008A2F96 /* domain.framework in Embed Frameworks */,
+				2DDA0500289582D9008A2F96 /* data.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		2DDA049628958230008A2F96 /* presentation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = presentation.xcodeproj; path = presentation/presentation.xcodeproj; sourceTree = "<group>"; };
+		2DDA04DE2895828D008A2F96 /* domain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = domain.xcodeproj; path = domain/domain.xcodeproj; sourceTree = "<group>"; };
+		2DDA04F8289582B8008A2F96 /* data.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = data.xcodeproj; path = data/data.xcodeproj; sourceTree = "<group>"; };
 		65315ED527FC9910000CF129 /* Session 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Session 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65315ED827FC9910000CF129 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		65315EDC27FC9910000CF129 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		65315EE127FC9917000CF129 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65315EE427FC9917000CF129 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65315EE627FC9917000CF129 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -27,17 +72,55 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DDA0503289582D9008A2F96 /* presentation.framework in Frameworks */,
+				2DDA04FF289582D9008A2F96 /* data.framework in Frameworks */,
+				2DDA0501289582D9008A2F96 /* domain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2DDA049728958230008A2F96 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2DDA049B28958230008A2F96 /* presentation.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2DDA04DF2895828D008A2F96 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2DDA04E32895828E008A2F96 /* domain.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2DDA04F9289582B8008A2F96 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2DDA04FD289582B9008A2F96 /* data.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2DDA04FE289582D9008A2F96 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		65315ECC27FC990F000CF129 = {
 			isa = PBXGroup;
 			children = (
+				2DDA04F8289582B8008A2F96 /* data.xcodeproj */,
+				2DDA04DE2895828D008A2F96 /* domain.xcodeproj */,
+				2DDA049628958230008A2F96 /* presentation.xcodeproj */,
 				65315ED727FC9910000CF129 /* Session 1 */,
 				65315ED627FC9910000CF129 /* Products */,
+				2DDA04FE289582D9008A2F96 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -53,8 +136,6 @@
 			isa = PBXGroup;
 			children = (
 				65315ED827FC9910000CF129 /* AppDelegate.swift */,
-				65315EDC27FC9910000CF129 /* ViewController.swift */,
-				65315EE127FC9917000CF129 /* Assets.xcassets */,
 				65315EE327FC9917000CF129 /* LaunchScreen.storyboard */,
 				65315EE627FC9917000CF129 /* Info.plist */,
 			);
@@ -71,12 +152,15 @@
 				65315ED127FC9910000CF129 /* Sources */,
 				65315ED227FC9910000CF129 /* Frameworks */,
 				65315ED327FC9910000CF129 /* Resources */,
+				2DDA04092895812C008A2F96 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Session 1";
+			packageProductDependencies = (
+			);
 			productName = "Session 1";
 			productReference = 65315ED527FC9910000CF129 /* Session 1.app */;
 			productType = "com.apple.product-type.application";
@@ -88,7 +172,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1330;
+				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					65315ED427FC9910000CF129 = {
@@ -105,8 +189,24 @@
 				Base,
 			);
 			mainGroup = 65315ECC27FC990F000CF129;
+			packageReferences = (
+			);
 			productRefGroup = 65315ED627FC9910000CF129 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2DDA04F9289582B8008A2F96 /* Products */;
+					ProjectRef = 2DDA04F8289582B8008A2F96 /* data.xcodeproj */;
+				},
+				{
+					ProductGroup = 2DDA04DF2895828D008A2F96 /* Products */;
+					ProjectRef = 2DDA04DE2895828D008A2F96 /* domain.xcodeproj */;
+				},
+				{
+					ProductGroup = 2DDA049728958230008A2F96 /* Products */;
+					ProjectRef = 2DDA049628958230008A2F96 /* presentation.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				65315ED427FC9910000CF129 /* Session 1 */,
@@ -114,13 +214,36 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		2DDA049B28958230008A2F96 /* presentation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = presentation.framework;
+			remoteRef = 2DDA049A28958230008A2F96 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2DDA04E32895828E008A2F96 /* domain.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = domain.framework;
+			remoteRef = 2DDA04E22895828E008A2F96 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2DDA04FD289582B9008A2F96 /* data.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = data.framework;
+			remoteRef = 2DDA04FC289582B9008A2F96 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		65315ED327FC9910000CF129 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				65315EE527FC9917000CF129 /* LaunchScreen.storyboard in Resources */,
-				65315EE227FC9917000CF129 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,7 +254,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65315EEF27FCA360000CF129 /* ViewController.swift in Sources */,
 				65315ED927FC9910000CF129 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,7 +322,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -254,7 +376,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -274,12 +396,19 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Session 1/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Session 3";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Application needs an access to your camera to capture avatar picture";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "To store your secret credentials";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need an access to your location coordinates in order to improve recommendation";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Application needs an access to record video sound";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Application needs an access to library to pick photo for your avatar";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -303,12 +432,19 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Session 1/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Session 3";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Application needs an access to your camera to capture avatar picture";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "To store your secret credentials";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need an access to your location coordinates in order to improve recommendation";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Application needs an access to record video sound";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Application needs an access to library to pick photo for your avatar";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
