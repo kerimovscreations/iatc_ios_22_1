@@ -20,7 +20,9 @@ public class PresentationAssembly: Assembly {
             FirstViewModel(
                 getUserUseCase: r.resolve(GetUserUseCase.self)!,
                 syncUserUseCase: r.resolve(SyncUserUseCase.self)!,
-                observeUserUseCase: r.resolve(ObserveUserUseCase.self)!
+                observeUserUseCase: r.resolve(ObserveUserUseCase.self)!,
+                sendMessageUseCase: r.resolve(SendSocketMessageUseCase.self)!,
+                observeMessageUseCase: r.resolve(ObserveSocketMessageUseCase.self)!
             )
         }
     }

@@ -7,30 +7,40 @@
 
 import UIKit
 import RxSwift
+import SnapKit
 
 public class FirstViewController: BaseViewController<FirstViewModel> {
     
     private var userSubscription: Disposable? = nil
+    private var socketSubscription: Disposable? = nil
     
     private var disposeBag = DisposeBag()
+    
+    private lazy var sendBtn: UIButton = {
+        let btn = UIButton()
+        
+        btn.setTitle("Send phew", for: .normal)
+        
+        btn.addTarget(self, action: #selector(onClick), for: .touchUpInside)
+        
+        self.view.addSubview(btn)
+        
+        return btn
+    }()
 
     public override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = .systemBlue
         
-//        self.vm?.getUser().then({ user in
-//            print(user.email)
-//        })
-        
-        
+        self.sendBtn.snp.makeConstraints { make in
+            make.center.equalTo(self.view.snp.center)
+        }
     }
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.vm?.syncUser()
-        self.vm?.syncUser()
         self.vm?.syncUser()
     }
     
@@ -43,13 +53,25 @@ public class FirstViewController: BaseViewController<FirstViewModel> {
             print(data.email)
         })
         
+        socketSubscription = self.vm?.observeMessage().subscribe({ received in
+            guard let message = received.element else { return }
+            
+            print("message received in UI \(message)")
+        })
+        
         userSubscription?.disposed(by: self.disposeBag)
+        socketSubscription?.disposed(by: self.disposeBag)
     }
     
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         userSubscription?.dispose()
+        socketSubscription?.dispose()
+    }
+    
+    @objc func onClick() {
+        self.vm?.send(message: "phew")
     }
 
     /*

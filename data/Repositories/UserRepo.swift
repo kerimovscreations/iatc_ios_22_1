@@ -14,11 +14,15 @@ class UserRepo: UserRepoProtocol {
     
     private let remoteDataSource: UserRemoteDataSourceProtocol
     private let localDataSource: UserLocalDataSourceProtocol
+    private let socketProvider: SocketProviderProtocol
         
     init(remoteDataSource: UserRemoteDataSourceProtocol,
-         localDataSource: UserLocalDataSourceProtocol) {
+         localDataSource: UserLocalDataSourceProtocol,
+         socketProvider: SocketProviderProtocol
+    ) {
         self.remoteDataSource = remoteDataSource
         self.localDataSource = localDataSource
+        self.socketProvider = socketProvider
     }
     
     func getUser() -> Promise<UserEntity> {
@@ -52,5 +56,12 @@ class UserRepo: UserRepoProtocol {
         return promise
     }
     
+    func send(message: String) {
+        self.socketProvider.send(message: message)
+    }
+    
+    func observeMessage() -> Observable<String> {
+        return self.socketProvider.observeMessages()
+    }
     
 }

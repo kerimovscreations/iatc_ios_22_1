@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D77304728B5278400019BEC /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2D77304628B5278400019BEC /* SocketIO */; };
+		2D77304928B529B700019BEC /* SocketProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D77304828B529B700019BEC /* SocketProviderProtocol.swift */; };
+		2D77304C28B529ED00019BEC /* SocketProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D77304B28B529ED00019BEC /* SocketProvider.swift */; };
 		2DDA04F2289582B8008A2F96 /* data.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DDA04F1289582B8008A2F96 /* data.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2DDA051628958433008A2F96 /* domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DDA051528958433008A2F96 /* domain.framework */; };
 		2DDA051728958433008A2F96 /* domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2DDA051528958433008A2F96 /* domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -56,6 +59,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2D77304828B529B700019BEC /* SocketProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketProviderProtocol.swift; sourceTree = "<group>"; };
+		2D77304B28B529ED00019BEC /* SocketProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketProvider.swift; sourceTree = "<group>"; };
 		2DDA04EE289582B8008A2F96 /* data.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = data.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DDA04F1289582B8008A2F96 /* data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = data.h; sourceTree = "<group>"; };
 		2DDA051528958433008A2F96 /* domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +90,7 @@
 				2DDA056A289EB71F008A2F96 /* RealmSwift in Frameworks */,
 				2DDA0568289EB71F008A2F96 /* Realm in Frameworks */,
 				2DDA051628958433008A2F96 /* domain.framework in Frameworks */,
+				2D77304728B5278400019BEC /* SocketIO in Frameworks */,
 				2DDA053028958716008A2F96 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D77304A28B529E000019BEC /* SocketProvider */ = {
+			isa = PBXGroup;
+			children = (
+				2D77304828B529B700019BEC /* SocketProviderProtocol.swift */,
+				2D77304B28B529ED00019BEC /* SocketProvider.swift */,
+			);
+			path = SocketProvider;
+			sourceTree = "<group>";
+		};
 		2DDA04E4289582B8008A2F96 = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +174,7 @@
 		2DDA05512895920A008A2F96 /* Remote data source */ = {
 			isa = PBXGroup;
 			children = (
+				2D77304A28B529E000019BEC /* SocketProvider */,
 				2DDA05532895923D008A2F96 /* UserRemoteDataSourceProtocol.swift */,
 				2DDA05552895926C008A2F96 /* UserRemoteDTO.swift */,
 				2DDA0557289592AF008A2F96 /* UserRemoteDataSource.swift */,
@@ -262,6 +278,7 @@
 				2DDA052F28958716008A2F96 /* Alamofire */,
 				2DDA0567289EB71F008A2F96 /* Realm */,
 				2DDA0569289EB71F008A2F96 /* RealmSwift */,
+				2D77304628B5278400019BEC /* SocketIO */,
 			);
 			productName = data;
 			productReference = 2DDA04EE289582B8008A2F96 /* data.framework */;
@@ -316,6 +333,7 @@
 			packageReferences = (
 				2DDA052E28958716008A2F96 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				2DDA0566289EB71F008A2F96 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				2D77304528B5278400019BEC /* XCRemoteSwiftPackageReference "socket" */,
 			);
 			productRefGroup = 2DDA04EF289582B8008A2F96 /* Products */;
 			projectDirPath = "";
@@ -352,8 +370,10 @@
 				2DDA05562895926C008A2F96 /* UserRemoteDTO.swift in Sources */,
 				2DDA05A2289ED337008A2F96 /* LocalDataProvider.swift in Sources */,
 				2DDA055E28959603008A2F96 /* UserLocalDataSource.swift in Sources */,
+				2D77304928B529B700019BEC /* SocketProviderProtocol.swift in Sources */,
 				2DDA055C289595C3008A2F96 /* UserLocalDTO.swift in Sources */,
 				2DDA055A289595A9008A2F96 /* UserLocalDataSourceProtocol.swift in Sources */,
+				2D77304C28B529ED00019BEC /* SocketProvider.swift in Sources */,
 				2DDA053C2895887D008A2F96 /* UserRepo.swift in Sources */,
 				2DDA054C28958D18008A2F96 /* DataAssembly.swift in Sources */,
 				2DDA05542895923D008A2F96 /* UserRemoteDataSourceProtocol.swift in Sources */,
@@ -632,6 +652,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2D77304528B5278400019BEC /* XCRemoteSwiftPackageReference "socket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
+			requirement = {
+				kind = exactVersion;
+				version = 16.0.1;
+			};
+		};
 		2DDA052E28958716008A2F96 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -651,6 +679,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2D77304628B5278400019BEC /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D77304528B5278400019BEC /* XCRemoteSwiftPackageReference "socket" */;
+			productName = SocketIO;
+		};
 		2DDA052F28958716008A2F96 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2DDA052E28958716008A2F96 /* XCRemoteSwiftPackageReference "Alamofire" */;

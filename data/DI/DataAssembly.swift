@@ -21,7 +21,8 @@ public class DataAssembly: Assembly {
         container.register(UserRepoProtocol.self) { r in
             UserRepo(
                 remoteDataSource: r.resolve(UserRemoteDataSourceProtocol.self)!,
-                localDataSource: r.resolve(UserLocalDataSourceProtocol.self)!
+                localDataSource: r.resolve(UserLocalDataSourceProtocol.self)!,
+                socketProvider: r.resolve(SocketProviderProtocol.self)!
             )
         }
         
@@ -43,6 +44,10 @@ public class DataAssembly: Assembly {
         
         container.register(UserLocalDataSourceProtocol.self) { r in
             UserLocalDataSource(localDataProvider: r.resolve(LocalDataProviderProtocol.self)!)
+        }.inObjectScope(.container)
+        
+        container.register(SocketProviderProtocol.self) { r in
+            SocketProvider()
         }.inObjectScope(.container)
     }
 }

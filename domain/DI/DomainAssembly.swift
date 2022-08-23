@@ -26,5 +26,13 @@ public class DomainAssembly: Assembly {
         container.register(ObserveUserUseCase.self) { r in
             ObserveUserUseCase.init(repo: r.resolve(UserRepoProtocol.self)!)
         }
+        
+        container.register(SendSocketMessageUseCase.self) { r in
+            SendSocketMessageUseCase(repo: r.resolve(UserRepoProtocol.self)!)
+        }
+        
+        container.register(ObserveSocketMessageUseCase.self) { r in
+            ObserveSocketMessageUseCase(repo: r.resolve(UserRepoProtocol.self)!)
+        }
     }
 }

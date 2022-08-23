@@ -13,4 +13,6 @@ public protocol UserRepoProtocol {
     func getUser() -> Promise<UserEntity>
     func observeUser() -> Observable<UserEntity>
     func syncUser() -> Promise<Void>
+    func send(message: String)
+    func observeMessage() -> Observable<String>
 }

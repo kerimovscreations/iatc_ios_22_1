@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D77304E28B52CDA00019BEC /* SendSocketMessageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D77304D28B52CDA00019BEC /* SendSocketMessageUseCase.swift */; };
+		2D77305028B52CF800019BEC /* ObserveSocketMessageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D77304F28B52CF800019BEC /* ObserveSocketMessageUseCase.swift */; };
 		2DDA04D82895828D008A2F96 /* domain.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DDA04D72895828D008A2F96 /* domain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2DDA051F289586D5008A2F96 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 2DDA051E289586D5008A2F96 /* RxBlocking */; };
 		2DDA0521289586D5008A2F96 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 2DDA0520289586D5008A2F96 /* RxRelay */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D77304D28B52CDA00019BEC /* SendSocketMessageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSocketMessageUseCase.swift; sourceTree = "<group>"; };
+		2D77304F28B52CF800019BEC /* ObserveSocketMessageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserveSocketMessageUseCase.swift; sourceTree = "<group>"; };
 		2DDA04D42895828D008A2F96 /* domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DDA04D72895828D008A2F96 /* domain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = domain.h; sourceTree = "<group>"; };
 		2DDA053528958778008A2F96 /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
@@ -131,6 +135,8 @@
 				2DDA053F28958933008A2F96 /* GetUserUseCase.swift */,
 				2DDA055F28959876008A2F96 /* SyncUserUseCase.swift */,
 				2DDA056128959891008A2F96 /* ObserveUserUseCase.swift */,
+				2D77304D28B52CDA00019BEC /* SendSocketMessageUseCase.swift */,
+				2D77304F28B52CF800019BEC /* ObserveSocketMessageUseCase.swift */,
 			);
 			path = "Use cases";
 			sourceTree = "<group>";
@@ -295,6 +301,8 @@
 				2DDA056028959877008A2F96 /* SyncUserUseCase.swift in Sources */,
 				2DDA0539289587B1008A2F96 /* UserRepoProtocol.swift in Sources */,
 				2DDA053628958778008A2F96 /* UserEntity.swift in Sources */,
+				2D77305028B52CF800019BEC /* ObserveSocketMessageUseCase.swift in Sources */,
+				2D77304E28B52CDA00019BEC /* SendSocketMessageUseCase.swift in Sources */,
 				2DDA056228959891008A2F96 /* ObserveUserUseCase.swift in Sources */,
 				2DDA054028958933008A2F96 /* GetUserUseCase.swift in Sources */,
 				2DDA054828958CD0008A2F96 /* DomainAssembly.swift in Sources */,
